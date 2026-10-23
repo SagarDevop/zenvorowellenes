@@ -50,9 +50,6 @@ export const HomePage = () => {
     else if (tab === 'categories') navigate('/categories');
     else if (tab === 'about') navigate('/about');
     else if (tab === 'cart') navigate('/cart');
-    else if (tab === 'account') {
-      showToast('ZENVORO Inner Power Circle');
-    }
   };
 
   const handleSelectProduct = (product) => {

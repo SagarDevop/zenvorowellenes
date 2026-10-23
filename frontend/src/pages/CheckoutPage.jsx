@@ -32,7 +32,7 @@ export const CheckoutPage = () => {
   const [paymentMethod, setPaymentMethod] = useState('upi'); // 'upi' | 'card' | 'netbanking' | 'cod'
   const [selectedUpiApp, setSelectedUpiApp] = useState('gpay');
   const [upiIdInput, setUpiIdInput] = useState('');
-  const [appliedCoupon, setAppliedCoupon] = useState('POWER20');
+  const [appliedCoupon, setAppliedCoupon] = useState('');
   const [couponInput, setCouponInput] = useState('');
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [orderId, setOrderId] = useState('');
@@ -112,23 +112,18 @@ export const CheckoutPage = () => {
   );
   const productDiscount = totalMRP - itemsSubtotal;
 
-  // Coupon discount (20% with POWER20)
-  const couponDiscount = appliedCoupon === 'POWER20' ? Math.round(itemsSubtotal * 0.2) : 0;
+  // Coupon discount removed
+  const couponDiscount = 0;
 
   // Extra 5% instant UPI prepaid discount
-  const prepaidDiscount = paymentMethod === 'upi' ? Math.round((itemsSubtotal - couponDiscount) * 0.05) : 0;
+  const prepaidDiscount = paymentMethod === 'upi' ? Math.round(itemsSubtotal * 0.05) : 0;
 
-  const finalPayable = Math.max(0, itemsSubtotal - couponDiscount - prepaidDiscount);
-  const totalSavings = productDiscount + couponDiscount + prepaidDiscount;
+  const finalPayable = Math.max(0, itemsSubtotal - prepaidDiscount);
+  const totalSavings = productDiscount + prepaidDiscount;
 
   const handleApplyCoupon = (e) => {
     e.preventDefault();
-    if (couponInput.trim().toUpperCase() === 'POWER20') {
-      setAppliedCoupon('POWER20');
-      showToast('Coupon POWER20 applied');
-    } else {
-      showToast('Invalid coupon. Try POWER20');
-    }
+    showToast('No coupons active at this time');
     setCouponInput('');
   };
 
@@ -397,49 +392,6 @@ export const CheckoutPage = () => {
         </section>
 
         {/* 4. Flipkart Coupon Strip */}
-        <section className="fk-checkout-card fk-coupon-card">
-          <div className="fk-coupon-header">
-            <Tag size={16} color="#85532F" />
-            <div className="fk-coupon-text-block">
-              <strong>Coupons &amp; Offers</strong>
-              {appliedCoupon ? (
-                <span className="fk-applied-coupon-text">
-                  Code <strong>{appliedCoupon}</strong> Applied: Flat 20% Off Launch Deal!
-                </span>
-              ) : (
-                <span>Apply coupon code for instant savings</span>
-              )}
-            </div>
-            {appliedCoupon ? (
-              <button
-                type="button"
-                className="fk-coupon-remove-btn"
-                onClick={() => {
-                  setAppliedCoupon(null);
-                  showToast('Coupon removed');
-                }}
-              >
-                Remove
-              </button>
-            ) : null}
-          </div>
-
-          {!appliedCoupon && (
-            <form className="fk-coupon-form" onSubmit={handleApplyCoupon}>
-              <input
-                type="text"
-                className="fk-coupon-input"
-                value={couponInput}
-                onChange={(e) => setCouponInput(e.target.value)}
-                placeholder="Enter coupon code (try POWER20)"
-              />
-              <button type="submit" className="fk-coupon-apply-btn">
-                Apply
-              </button>
-            </form>
-          )}
-        </section>
-
         {/* 5. Payment Options Selector (Flipkart Exact) */}
         <section className="fk-checkout-card fk-payment-card">
           <div className="fk-card-header-simple">
@@ -567,13 +519,6 @@ export const CheckoutPage = () => {
               <span>Discount</span>
               <span className="fk-green-text">-₹{productDiscount}</span>
             </div>
-
-            {couponDiscount > 0 && (
-              <div className="fk-price-line">
-                <span>Coupon Discount (POWER20)</span>
-                <span className="fk-green-text">-₹{couponDiscount}</span>
-              </div>
-            )}
 
             {prepaidDiscount > 0 && (
               <div className="fk-price-line">

@@ -32,9 +32,9 @@ const initialProducts = [
     category: 'brain_focus',
     section: 'best_sellers',
     size: '30 Gummies',
-    price: 899,
-    originalPrice: 1299,
-    discountPercent: 30,
+    price: 380,
+    originalPrice: 514,
+    discountPercent: 26,
     rating: 4.8,
     reviewCount: '1.2k',
     image: '/images/products/Aswgantha gummy.jpeg',
@@ -43,7 +43,7 @@ const initialProducts = [
       '/images/products/Aswgantha gummy.jpeg',
       '/images/products/Aswagantha gummy back.jpeg'
     ],
-    badge: 'STRESS RELIEF',
+    badge: '26% OFF',
     inStock: true,
     description: 'Formulated with premium Ashwagandha extract (150mg) enhanced with BioPerine® (5mg) and Vitamin B6 (1.2mg) for maximum absorption. Relieves everyday stress, calms the mind, and fuels sustained energy.'
   },
@@ -56,9 +56,9 @@ const initialProducts = [
     category: 'deep_recovery',
     section: 'best_sellers',
     size: '30 Gummies',
-    price: 799,
-    originalPrice: 1199,
-    discountPercent: 33,
+    price: 400,
+    originalPrice: 480,
+    discountPercent: 20,
     rating: 4.9,
     reviewCount: '980',
     image: '/images/products/Multivitamin gummy.jpeg',
@@ -67,7 +67,7 @@ const initialProducts = [
       '/images/products/Multivitamin gummy.jpeg',
       '/images/products/multivitamin gummy back.jpeg'
     ],
-    badge: 'DAILY NUTRITION',
+    badge: '20% OFF',
     inStock: true,
     description: 'Comprehensive daily health supplement packed with essential Vitamins (A, B-Complex, C, D2) and vital Minerals (Iron, Magnesium, Zinc, Selenium). Boosts immune defense, vision health, and all-day vitality.'
   }

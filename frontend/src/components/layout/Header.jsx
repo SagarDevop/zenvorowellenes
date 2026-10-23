@@ -28,7 +28,7 @@ export const Header = ({
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [location, setLocation] = useState('110001, Connaught Place');
+  const [location, setLocation] = useState('All PAN India');
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export const Header = ({
             />
             <div className="fk-brand-text-block">
               <span className="fk-brand-name">ZENVORO</span>
-              <span className="fk-brand-tagline">Ayurvedic Maison</span>
+              <span className="fk-brand-tagline">Ayurvedic </span>
             </div>
           </div>
 

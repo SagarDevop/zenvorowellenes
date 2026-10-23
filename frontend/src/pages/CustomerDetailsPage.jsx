@@ -74,10 +74,6 @@ export const CustomerDetailsPage = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const [couponCode, setCouponCode] = useState(() => {
-    return location.state?.appliedCoupon?.code || '';
-  });
-  const [couponInput, setCouponInput] = useState('');
   const [handoffData, setHandoffData] = useState(null);
 
   // If buyNow query param is present but state was lost (e.g. refresh), load product from API
@@ -171,34 +167,13 @@ export const CustomerDetailsPage = () => {
     return [];
   }, [buyNowItem, cartData]);
 
-  // Price Calculations
+  // Price Calculations (Zero Coupon Logic)
   const subtotal = activeItems.reduce((acc, item) => acc + item.subtotal, 0);
   const totalMRP = activeItems.reduce((acc, item) => acc + item.itemMRP, 0);
   const productDiscounts = Math.max(0, totalMRP - subtotal);
-
-  // Coupon handling: POWER20 provides 20% discount on subtotal
-  const isCouponValid = couponCode.trim().toUpperCase() === 'POWER20';
-  const couponDiscount = isCouponValid ? Math.round(subtotal * 0.2) : 0;
   const deliveryCharges = 0; // Free Express Delivery
-  const finalTotal = Math.max(0, subtotal - couponDiscount);
-  const totalSavings = productDiscounts + couponDiscount;
-
-  const handleApplyCoupon = (e) => {
-    e.preventDefault();
-    const clean = couponInput.trim().toUpperCase();
-    if (clean === 'POWER20') {
-      setCouponCode('POWER20');
-      showToast('Coupon POWER20 applied');
-      setCouponInput('');
-    } else {
-      showToast('Invalid coupon. Try POWER20');
-    }
-  };
-
-  const handleRemoveCoupon = () => {
-    setCouponCode('');
-    showToast('Coupon removed');
-  };
+  const finalTotal = subtotal;
+  const totalSavings = productDiscounts;
 
   // Form Validation
   const validateForm = () => {
@@ -272,10 +247,6 @@ export const CustomerDetailsPage = () => {
     msg += `\n\nPRICE SUMMARY\n`;
     msg += `Subtotal: ₹${subtotal}\n`;
     msg += `Product Discounts: ₹${productDiscounts}\n`;
-    if (couponCode && couponDiscount > 0) {
-      msg += `Coupon: ${couponCode}\n`;
-      msg += `Coupon Discount: ₹${couponDiscount}\n`;
-    }
     msg += `Delivery Charges: ${deliveryCharges === 0 ? 'FREE' : '₹' + deliveryCharges}\n`;
     msg += `Final Order Total: ₹${finalTotal}\n\n`;
 
@@ -627,34 +598,6 @@ export const CustomerDetailsPage = () => {
               ))}
             </div>
 
-            {/* Coupon Section */}
-            <div className="cd-coupon-box">
-              {couponCode && couponDiscount > 0 ? (
-                <div className="cd-coupon-applied-row">
-                  <div className="cd-coupon-code-chip">
-                    <Tag size={12} />
-                    <span>{couponCode} (20% OFF Applied)</span>
-                  </div>
-                  <button type="button" className="cd-coupon-remove" onClick={handleRemoveCoupon}>
-                    Remove
-                  </button>
-                </div>
-              ) : (
-                <form className="cd-coupon-form" onSubmit={handleApplyCoupon}>
-                  <input
-                    type="text"
-                    className="cd-coupon-input"
-                    placeholder="Enter Coupon (try POWER20)"
-                    value={couponInput}
-                    onChange={(e) => setCouponInput(e.target.value)}
-                  />
-                  <button type="submit" className="cd-coupon-btn">
-                    Apply
-                  </button>
-                </form>
-              )}
-            </div>
-
             {/* Price Details Breakdown */}
             <div className="cd-price-lines">
               <div className="cd-price-line">
@@ -666,13 +609,6 @@ export const CustomerDetailsPage = () => {
                 <div className="cd-price-line discount">
                   <span>Product Discount</span>
                   <span>-₹{productDiscounts}</span>
-                </div>
-              )}
-
-              {couponCode && couponDiscount > 0 && (
-                <div className="cd-price-line discount">
-                  <span>Coupon ({couponCode})</span>
-                  <span>-₹{couponDiscount}</span>
                 </div>
               )}
 

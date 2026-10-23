@@ -84,7 +84,7 @@ export const ProductDetailPage = ({
   // Load combo details and similar products whenever product changes
   useEffect(() => {
     if (!product) return;
-    setSelectedVariant(product.availableSizes?.[1] || product.availableSizes?.[0] || null);
+    setSelectedVariant(product.availableSizes?.[0] || null);
 
     const loadExtra = async () => {
       const [comboData, similarData] = await Promise.all([
@@ -372,7 +372,9 @@ export const ProductDetailPage = ({
 
           {/* Price Breakdown */}
           <div className="pdp-price-block">
-            <div className="pdp-special-tag">Special Price</div>
+            <div className="pdp-special-tag">
+              {product.id === 'prod_1' ? 'DIWALI OFFER — 33% OFF' : product.id === 'prod_2' ? '26% OFF' : product.id === 'prod_3' ? '20% OFF' : 'Special Price'}
+            </div>
             <div className="pdp-price-numbers-row">
               <span className="pdp-price-current">₹{currentPrice}</span>
               {currentOriginalPrice && (
@@ -387,39 +389,47 @@ export const ProductDetailPage = ({
         </section>
 
 
-        {/* 4. Available Coupons & Bank Offers */}
+        {/* 4. Available Offers & Benefits */}
         <section className="pdp-section pdp-offers-card">
           <div className="pdp-section-subheading">
             <Tag size={16} color="#059669" />
-            <span>Available Offers & Coupons</span>
+            <span>Available Offers & Benefits</span>
           </div>
 
-          <div className="pdp-offer-item highlight">
-            <div className="pdp-offer-bullet">
-              <Tag size={15} color="#85532F" />
+          {product.id === 'prod_1' && (
+            <div className="pdp-offer-item highlight">
+              <div className="pdp-offer-bullet">
+                <Tag size={15} color="#85532F" />
+              </div>
+              <div className="pdp-offer-text">
+                <strong>Diwali Special:</strong> Single Bottle at <strong>₹400</strong> (DIWALI OFFER — 33% OFF)
+              </div>
             </div>
-            <div className="pdp-offer-text">
-              <strong>Launch Offer:</strong> Flat <strong>20% OFF</strong> using code{' '}
-              <span className="pdp-coupon-code-pill">POWER20</span>
-            </div>
-            <button
-              type="button"
-              className="pdp-copy-coupon-btn"
-              onClick={() => handleCopyCoupon('POWER20')}
-            >
-              <Copy size={13} />
-              <span>Copy</span>
-            </button>
-          </div>
+          )}
 
-          <div className="pdp-offer-item">
-            <div className="pdp-offer-bullet">
-              <CreditCard size={15} color="#85532F" />
+          {product.id === 'prod_2' && (
+            <div className="pdp-offer-item highlight">
+              <div className="pdp-offer-bullet">
+                <Tag size={15} color="#85532F" />
+              </div>
+              <div className="pdp-offer-text">
+                <strong>Special Offer:</strong> Single Bottle at <strong>₹380</strong> (26% OFF)
+              </div>
             </div>
-            <div className="pdp-offer-text">
-              <strong>Bank Offer:</strong> Extra 5% Instant Discount on UPI & Credit Card Prepayment
+          )}
+
+          {product.id === 'prod_3' && (
+            <div className="pdp-offer-item highlight">
+              <div className="pdp-offer-bullet">
+                <Tag size={15} color="#85532F" />
+              </div>
+              <div className="pdp-offer-text">
+                <strong>Special Offer:</strong> Single Bottle at <strong>₹400</strong> (20% OFF)
+              </div>
             </div>
-          </div>
+          )}
+
+         
 
           <div className="pdp-offer-item">
             <div className="pdp-offer-bullet">
@@ -462,25 +472,17 @@ export const ProductDetailPage = ({
 
         {/* 6. Delivery & Assurance Section */}
         <section className="pdp-section pdp-delivery-card">
-          <div className="pdp-delivery-location-row">
-            <div className="pdp-delivery-loc-info">
-              <MapPin size={16} className="pdp-loc-pin" />
-              <span>Deliver to: <strong>Connaught Place, New Delhi - 110001</strong></span>
-            </div>
-            <span className="pdp-change-loc-btn">Change</span>
-          </div>
-
           <div className="pdp-delivery-speed-row">
             <Truck size={17} color="#85532F" />
             <span>
-              <strong>FREE Express Delivery</strong> by <strong>Tomorrow, 5:00 PM</strong>
+              <strong>FREE Express Delivery</strong> Within <strong>2-3 days</strong>
             </span>
           </div>
 
           <div className="pdp-assurances-grid">
             <div className="pdp-assurance-pill">
               <RotateCcw size={16} color="#85532F" />
-              <span>30-Day Money Back</span>
+              <span>Money Valued</span>
             </div>
             <div className="pdp-assurance-pill">
               <ShieldCheck size={16} color="#85532F" />

@@ -242,7 +242,14 @@ export const CategoriesPage = ({
                   </div>
 
                   <div className="cat-prod-details">
-                    <div className="cat-prod-brand">ZENVORO WELLNESS</div>
+                    <div className="cat-prod-brand">
+                      <span>ZENVORO WELLNESS</span>
+                      {product.badge && (
+                        <span className="cat-prod-badge-pill" style={{ marginLeft: '6px', fontSize: '9px', fontWeight: 700, color: '#85532F', backgroundColor: '#FAF4EE', padding: '1px 5px', borderRadius: '3px' }}>
+                          {product.badge}
+                        </span>
+                      )}
+                    </div>
                     <h3 className="cat-prod-name">{product.name}</h3>
 
                     {/* Rating & Size Row */}
@@ -262,8 +269,16 @@ export const CategoriesPage = ({
                       {product.originalPrice && (
                         <span className="cat-prod-mrp">₹{product.originalPrice}</span>
                       )}
-                      {product.discountPercent && (
-                        <span className="cat-prod-disc">{product.discountPercent}% off</span>
+                      {product.id === 'prod_1' ? (
+                        <span className="cat-prod-disc">DIWALI OFFER — 33% OFF</span>
+                      ) : product.id === 'prod_2' ? (
+                        <span className="cat-prod-disc">26% OFF</span>
+                      ) : product.id === 'prod_3' ? (
+                        <span className="cat-prod-disc">20% OFF</span>
+                      ) : (
+                        product.discountPercent && (
+                          <span className="cat-prod-disc">{product.discountPercent}% off</span>
+                        )
                       )}
                     </div>
                   </div>

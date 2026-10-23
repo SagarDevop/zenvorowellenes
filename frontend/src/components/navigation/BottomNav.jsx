@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Grid2X2, BadgeCheck, ShoppingBag, User } from 'lucide-react';
+import { Home, Grid2X2, BadgeCheck, ShoppingBag } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCartWishlist } from '../../context/CartWishlistContext';
 
@@ -28,17 +28,13 @@ export const BottomNav = ({ activeTab: activeTabProp, onTabChange }) => {
     else if (tabId === 'categories') navigate('/categories');
     else if (tabId === 'about') navigate('/about');
     else if (tabId === 'cart') navigate('/cart');
-    else if (tabId === 'account') {
-      showToast('ZENVORO Inner Power Club');
-    }
   };
 
   const tabs = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'categories', label: '3 Rituals', icon: Grid2X2 },
     { id: 'about', label: 'Philosophy', icon: BadgeCheck },
-    { id: 'cart', label: 'Cart', icon: ShoppingBag, badge: cartCount },
-    { id: 'account', label: 'Account', icon: User }
+    { id: 'cart', label: 'Cart', icon: ShoppingBag, badge: cartCount }
   ];
 
   return (
