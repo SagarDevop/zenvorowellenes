@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import { ImageWithSkeleton } from './ImageWithSkeleton';
 
 export const HeroBanner = ({ banners, banner, onExplore, onSelectProduct }) => {
   const slides = banners?.heroSlides || [
@@ -15,6 +14,12 @@ export const HeroBanner = ({ banners, banner, onExplore, onSelectProduct }) => {
       title: 'ZENVORO Ashwagandha Gummies',
       productId: 'prod_2',
       image: '/images/banners/Zenvoro Ashwagandha Gummies Wellness Ad.png'
+    },
+    {
+      id: 'banner_multivitamin',
+      title: 'ZENVORO Multivitamin Gummies',
+      productId: 'prod_3',
+      image: '/images/banners/Zenvoro Multivitamin Gummies Wellness Ad.jpg'
     }
   ];
 
@@ -74,7 +79,7 @@ export const HeroBanner = ({ banners, banner, onExplore, onSelectProduct }) => {
     >
       {/* Full-Image Slide Card (Pure Ad Visual without Text Overlay) */}
       <div className="fk-hero-full-slide" onClick={handleCtaClick}>
-        <ImageWithSkeleton
+        <img
           src={currentSlide.image}
           alt={currentSlide.title || 'ZENVORO Banner'}
           className="fk-hero-full-img"

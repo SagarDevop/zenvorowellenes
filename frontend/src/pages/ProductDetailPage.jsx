@@ -23,7 +23,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useCartWishlist } from '../context/CartWishlistContext';
 import { api } from '../services/api';
 import { PdpSkeleton } from '../components/ui/Skeleton';
-import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 
 export const ProductDetailPage = ({
@@ -263,7 +262,7 @@ export const ProductDetailPage = ({
                 onTouchMove={handleTouchMove}
                 onTouchEnd={() => handleTouchEnd(productImages)}
               >
-                <ImageWithSkeleton
+                <img
                   src={currentImage}
                   alt={`${product.name} - view ${activeImageIndex + 1}`}
                   className="pdp-main-image"
@@ -520,7 +519,7 @@ export const ProductDetailPage = ({
               {/* Product 1: Current Product */}
               <div className="pdp-combo-item-card">
                 <div className="pdp-combo-thumb-box">
-                  <ImageWithSkeleton
+                  <img
                     src={combo.mainProduct.image}
                     alt={combo.mainProduct.name}
                     className="pdp-combo-thumb"
@@ -547,7 +546,7 @@ export const ProductDetailPage = ({
                 title="View product details"
               >
                 <div className="pdp-combo-thumb-box">
-                  <ImageWithSkeleton
+                  <img
                     src={combo.companionProduct.image}
                     alt={combo.companionProduct.name}
                     className="pdp-combo-thumb"
@@ -604,7 +603,7 @@ export const ProductDetailPage = ({
                   onClick={() => handleSelectProduct(simProd)}
                 >
                   <div className="pdp-sim-img-wrap">
-                    <ImageWithSkeleton src={simProd.image} alt={simProd.name} className="pdp-sim-img" />
+                    <img src={simProd.image} alt={simProd.name} className="pdp-sim-img" />
                     {simProd.size && <span className="pdp-sim-size">{simProd.size}</span>}
                   </div>
 

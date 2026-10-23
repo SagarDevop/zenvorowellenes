@@ -26,6 +26,12 @@ export const STATIC_BANNERS = {
       title: 'ZENVORO Ashwagandha Gummies',
       productId: 'prod_2',
       image: '/images/banners/Zenvoro Ashwagandha Gummies Wellness Ad.png'
+    },
+    {
+      id: 'banner_multivitamin',
+      title: 'ZENVORO Multivitamin Gummies',
+      productId: 'prod_3',
+      image: '/images/banners/Zenvoro Multivitamin Gummies Wellness Ad.jpg'
     }
   ],
   hero: {

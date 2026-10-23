@@ -17,7 +17,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useCartWishlist } from '../context/CartWishlistContext';
 import { STATIC_PRODUCTS } from '../services/api';
-import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 export const CartPage = ({
   onBack,
@@ -240,7 +239,7 @@ export const CartPage = ({
                     className="cart-item-img-wrap"
                     onClick={() => handleSelectProduct(product)}
                   >
-                    <ImageWithSkeleton src={product.image} alt={product.name} className="cart-item-img" />
+                    <img src={product.image} alt={product.name} className="cart-item-img" />
                   </div>
 
                   <div className="cart-item-info">

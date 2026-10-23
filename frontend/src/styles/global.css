@@ -6530,41 +6530,7 @@ a {
   border-radius: 4px;
 }
 
-/* Image with Skeleton Wrapper */
-.fk-image-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #F7F3EE;
-}
 
-.fk-image-skeleton {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.fk-image-element {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.fk-image-element.loading {
-  opacity: 0;
-}
-
-.fk-image-element.loaded {
-  opacity: 1;
-}
 
 /* Page Level Skeleton Containers */
 .home-skeleton-container {

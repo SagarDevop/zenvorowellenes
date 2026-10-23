@@ -26,7 +26,6 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCartWishlist } from '../context/CartWishlistContext';
-import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 export const AboutPage = ({ onBack, onExploreCatalog }) => {
   const navigate = useNavigate();
@@ -269,7 +268,7 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
             onClick={() => navigate('/product/prod_1')}
           >
             <div className="about-ritual-media">
-              <ImageWithSkeleton
+              <img
                 src="/images/products/shilazeetgummy.jpeg"
                 alt="Shilajit Gummies"
                 className="about-ritual-img"
@@ -298,7 +297,7 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
             onClick={() => navigate('/product/prod_2')}
           >
             <div className="about-ritual-media">
-              <ImageWithSkeleton
+              <img
                 src="/images/products/Aswgantha gummy.jpeg"
                 alt="Ashwagandha Gummies"
                 className="about-ritual-img"
@@ -327,7 +326,7 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
             onClick={() => navigate('/product/prod_3')}
           >
             <div className="about-ritual-media">
-              <ImageWithSkeleton
+              <img
                 src="/images/products/Multivitamin gummy.jpeg"
                 alt="Multivitamin Daily Gummies"
                 className="about-ritual-img"

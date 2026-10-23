@@ -5,7 +5,6 @@ import {
   RotateCcw,
   Zap
 } from 'lucide-react';
-import { ImageWithSkeleton } from './ImageWithSkeleton';
 import { useCartWishlist } from '../../context/CartWishlistContext';
 
 export const FlipkartPromoBanners = ({ onSelectProduct, onNavigateCategories }) => {
@@ -46,7 +45,7 @@ export const FlipkartPromoBanners = ({ onSelectProduct, onNavigateCategories }) 
           }
         }}
       >
-        <ImageWithSkeleton
+        <img
           src="/images/banners/zenvoro_forest_ritual_banner.jpg"
           alt="Zenvoro Pure Himalayan Wellness - Natural Forest Ritual"
           className="fk-trio-bg-img"

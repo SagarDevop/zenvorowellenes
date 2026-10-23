@@ -13,7 +13,6 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { ImageWithSkeleton } from '../ui/ImageWithSkeleton';
 import { api, STATIC_PRODUCTS } from '../../services/api';
 
 const TRENDING_SEARCHES = [
@@ -195,7 +194,7 @@ export const SearchOverlay = ({ isOpen, onClose, initialQuery = '' }) => {
                   }}
                 >
                   <div className="fk-result-thumb-box">
-                    <ImageWithSkeleton
+                    <img
                       src={prod.image}
                       alt={prod.name}
                       className="fk-result-thumb-img"

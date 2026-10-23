@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { ImageWithSkeleton } from './ImageWithSkeleton';
 
 export const ProductCard = ({ product, showRating = true, sizePosition = 'below', onSelectProduct }) => {
   const navigate = useNavigate();
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const handleCardClick = () => {
     if (onSelectProduct) {
@@ -30,11 +30,16 @@ export const ProductCard = ({ product, showRating = true, sizePosition = 'below'
     >
       {/* Product Image Area with overlays */}
       <div className="product-media-container">
-        <ImageWithSkeleton
+        {!imgLoaded && (
+          <div className="fk-skeleton" style={{ position: 'absolute', inset: 0, zIndex: 1 }} />
+        )}
+        <img
           src={product.image}
           alt={product.name}
           className="product-img"
           loading="lazy"
+          onLoad={() => setImgLoaded(true)}
+          style={{ opacity: imgLoaded ? 1 : 0, transition: 'opacity 0.2s ease' }}
         />
 
         {/* Floating Badge (e.g. BEST SELLER / STRESS RELIEF) */}
@@ -83,4 +88,3 @@ export const ProductCard = ({ product, showRating = true, sizePosition = 'below'
     </article>
   );
 };
-

@@ -15,7 +15,6 @@ import { useCartWishlist } from '../context/CartWishlistContext';
 import { api, STATIC_CATEGORIES } from '../services/api';
 import { SearchOverlay } from '../components/search/SearchOverlay';
 import { CategoriesSkeleton } from '../components/ui/Skeleton';
-import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 const categoryIconMap = {
   all: ShoppingBag,
@@ -241,7 +240,7 @@ export const CategoriesPage = ({
                   }}
                 >
                   <div className="cat-prod-img-wrap">
-                    <ImageWithSkeleton
+                    <img
                       src={product.image}
                       alt={product.name}
                       className="cat-prod-img"

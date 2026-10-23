@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Timer, ChevronRight, Star, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { ImageWithSkeleton } from './ImageWithSkeleton';
 
 export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
   const navigate = useNavigate();
@@ -117,7 +116,7 @@ export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
       >
         {/* Left / Top Product Image */}
         <div className="deal-spotlight-media">
-          <ImageWithSkeleton
+          <img
             src={ashwaProduct.image}
             alt={ashwaProduct.name}
             className="deal-spotlight-img"
