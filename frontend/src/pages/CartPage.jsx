@@ -5,17 +5,18 @@ import {
   Plus,
   Minus,
   ShieldCheck,
-  Tag,
   CheckCircle2,
   ShoppingBag,
-  MapPin,
   ChevronRight,
-  Sparkles,
   Zap,
-  Truck
+  Truck,
+  Sparkles,
+  Star,
+  Check
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCartWishlist } from '../context/CartWishlistContext';
+import { STATIC_PRODUCTS } from '../services/api';
 
 export const CartPage = ({
   onBack,
@@ -27,6 +28,7 @@ export const CartPage = ({
     cartData,
     updateCartQuantity,
     removeFromCart,
+    addToCart,
     clearCart,
     showToast
   } = useCartWishlist();
@@ -46,41 +48,108 @@ export const CartPage = ({
     else navigate('/');
   };
 
-  const [appliedCoupon, setAppliedCoupon] = useState(null);
-  const [couponInput, setCouponInput] = useState('');
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderId, setOrderId] = useState('');
 
-  const handleApplyCoupon = (codeToApply) => {
-    const code = (codeToApply || couponInput).trim().toUpperCase();
-    if (!code) return;
+  const finalPrice = cartData.totalPrice;
+  const totalSavings = cartData.totalDiscount;
 
-    if (code === 'POWER20') {
-      setAppliedCoupon({
-        code: 'POWER20',
-        percent: 20,
-        discount: Math.round(cartData.totalPrice * 0.2)
-      });
-      showToast('Coupon POWER20 applied');
-    } else {
-      showToast('Invalid coupon. Try POWER20');
-    }
-    setCouponInput('');
-  };
-
-  const handleRemoveCoupon = () => {
-    setAppliedCoupon(null);
-    showToast('Coupon removed');
-  };
-
-  const couponDiscount = appliedCoupon?.discount || 0;
-  const finalPrice = Math.max(cartData.totalPrice - couponDiscount, 0);
-  const totalSavings = cartData.totalDiscount + couponDiscount;
+  // Recommended products: products not yet in cart (or all if all are in cart)
+  const cartProductIds = new Set(cartData.items.map((i) => i.productId));
+  const candidateProducts = STATIC_PRODUCTS.filter((p) => !cartProductIds.has(p.id));
+  const recommendedProducts = candidateProducts.length > 0 ? candidateProducts : STATIC_PRODUCTS;
 
   const handlePlaceOrder = () => {
     if (cartData.items.length === 0) return;
-    navigate('/checkout');
+    navigate('/customer-details');
   };
+
+  const renderRecommendations = () => (
+    <div className="cart-recommendations-section">
+      <div className="cart-rec-header">
+        <div className="cart-rec-title-wrap">
+          <Sparkles size={16} color="#85532F" />
+          <h3 className="cart-rec-title">You might be interested in</h3>
+        </div>
+        <span className="cart-rec-badge">Recommended</span>
+      </div>
+
+      <div className="cart-rec-scroll">
+        {recommendedProducts.map((product) => {
+          const isAdded = cartProductIds.has(product.id);
+          return (
+            <div key={product.id} className="cart-rec-card">
+              <div>
+                <div
+                  className="cart-rec-img-box"
+                  onClick={() => handleSelectProduct(product)}
+                >
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="cart-rec-img"
+                    loading="lazy"
+                  />
+                  {product.rating && (
+                    <div className="cart-rec-rating">
+                      <span>{product.rating}</span>
+                      <Star size={9} fill="#FFFFFF" color="#FFFFFF" />
+                    </div>
+                  )}
+                </div>
+
+                {product.badge && (
+                  <span className="cart-rec-badge-tag">{product.badge}</span>
+                )}
+
+                <h4
+                  className="cart-rec-name"
+                  onClick={() => handleSelectProduct(product)}
+                  title={product.name}
+                >
+                  {product.shortName || product.name}
+                </h4>
+
+                <div className="cart-rec-price-row">
+                  <span className="cart-rec-price">₹{product.price}</span>
+                  {product.originalPrice && (
+                    <span className="cart-rec-mrp">₹{product.originalPrice}</span>
+                  )}
+                  {product.discountPercent && (
+                    <span className="cart-rec-discount">{product.discountPercent}% off</span>
+                  )}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                className={`cart-rec-add-btn ${isAdded ? 'added' : ''}`}
+                onClick={() => {
+                  if (!isAdded) {
+                    addToCart(product.id, 1);
+                  }
+                }}
+                disabled={isAdded}
+                aria-label={isAdded ? `${product.name} added` : `Add ${product.name} to cart`}
+              >
+                {isAdded ? (
+                  <>
+                    <Check size={13} strokeWidth={2.5} />
+                    <span>ADDED</span>
+                  </>
+                ) : (
+                  <>
+                    <Plus size={13} strokeWidth={2.5} />
+                    <span>ADD</span>
+                  </>
+                )}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 
   return (
     <div className="cart-page-view">
@@ -102,25 +171,7 @@ export const CartPage = ({
         </div>
       </header>
 
-      {/* 2. Delivery Address Banner */}
-      <div className="cart-address-banner">
-        <div className="cart-address-left">
-          <MapPin size={16} className="cart-pin-icon" />
-          <div className="cart-address-text">
-            <span>Deliver to: <strong>New Delhi - 110001</strong></span>
-            <small>Home • Free Express Delivery</small>
-          </div>
-        </div>
-        <button
-          type="button"
-          className="cart-change-addr-btn"
-          onClick={() => showToast('Pincode 110001 verified')}
-        >
-          Change
-        </button>
-      </div>
-
-      {/* 3. Empty State or Cart Items */}
+      {/* 2. Empty State or Cart Items */}
       {cartData.items.length === 0 && !orderSuccess ? (
         <div className="cart-empty-view">
           <div className="cart-empty-icon-box">
@@ -137,6 +188,10 @@ export const CartPage = ({
           >
             Explore Sacred Rituals
           </button>
+
+          <div style={{ marginTop: '24px', width: '100%', textAlign: 'left' }}>
+            {renderRecommendations()}
+          </div>
         </div>
       ) : orderSuccess ? (
         <div className="cart-order-success-card">
@@ -259,56 +314,6 @@ export const CartPage = ({
             ))}
           </div>
 
-          {/* Coupon Code Section */}
-          <div className="cart-section-card cart-coupon-card">
-            <div className="cart-coupon-header">
-              <Tag size={17} color="#7C3AED" />
-              <span>Apply Coupons & Promo Codes</span>
-            </div>
-
-            {appliedCoupon ? (
-              <div className="cart-coupon-applied">
-                <div className="coupon-applied-text">
-                  <strong>{appliedCoupon.code}</strong> applied: Saved ₹{appliedCoupon.discount}!
-                </div>
-                <button
-                  type="button"
-                  className="coupon-remove-btn"
-                  onClick={handleRemoveCoupon}
-                >
-                  REMOVE
-                </button>
-              </div>
-            ) : (
-              <>
-                <div className="cart-coupon-input-box">
-                  <input
-                    type="text"
-                    placeholder="Enter Coupon Code (e.g. CLEAN30)"
-                    value={couponInput}
-                    onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
-                    className="coupon-text-input"
-                  />
-                  <button
-                    type="button"
-                    className="coupon-apply-btn"
-                    onClick={() => handleApplyCoupon()}
-                  >
-                    APPLY
-                  </button>
-                </div>
-
-                <div className="featured-coupon-chip" onClick={() => handleApplyCoupon('CLEAN30')}>
-                  <div className="feat-coupon-left">
-                    <span className="feat-code">CLEAN30</span>
-                    <span className="feat-desc">Get flat 30% OFF on all essentials</span>
-                  </div>
-                  <span className="feat-tap-apply">TAP TO APPLY</span>
-                </div>
-              </>
-            )}
-          </div>
-
           {/* Price Details Breakdown Card (Flipkart Exact) */}
           <div className="cart-section-card cart-price-details-card">
             <h3 className="cart-price-heading">
@@ -324,13 +329,6 @@ export const CartPage = ({
               <span>Discount on MRP</span>
               <span className="green-text">- ₹{cartData.totalDiscount}</span>
             </div>
-
-            {appliedCoupon && (
-              <div className="cart-breakdown-row discount">
-                <span>Coupon ({appliedCoupon.code})</span>
-                <span className="green-text">- ₹{appliedCoupon.discount}</span>
-              </div>
-            )}
 
             <div className="cart-breakdown-row">
               <span>Delivery Charges</span>
@@ -354,6 +352,9 @@ export const CartPage = ({
             <ShieldCheck size={20} color="#0D9488" />
             <span>Safe and Secure Payments • 100% Authentic Products</span>
           </div>
+
+          {/* Flipkart-Style Recommendations Section */}
+          {renderRecommendations()}
         </div>
       )}
 

@@ -151,13 +151,17 @@ export const ProductDetailPage = ({
     await addToCart(product.id, 1);
   };
 
-  const handleBuyNow = async () => {
-    try {
-      await addToCart(product.id, 1);
-    } catch (e) {
-      // proceed anyway
-    }
-    navigate(`/checkout?buyNow=${product.id}`);
+  const handleBuyNow = () => {
+    if (!product) return;
+    navigate(`/customer-details?buyNow=${product.id}`, {
+      state: {
+        buyNowItem: {
+          product,
+          variant: selectedVariant || product.availableSizes?.[0] || null,
+          quantity: 1
+        }
+      }
+    });
   };
 
   const handleAddComboToCart = () => {

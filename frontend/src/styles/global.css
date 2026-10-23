@@ -4705,6 +4705,214 @@ a {
   font-weight: 500;
 }
 
+/* -------------------------------------------------------
+   FLIPKART EXACT RECOMMENDED PRODUCTS SECTION
+   ------------------------------------------------------- */
+.cart-recommendations-section {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+  padding: 14px 12px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  margin-top: 2px;
+}
+
+.cart-rec-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.cart-rec-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-rec-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.cart-rec-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #85532F;
+  background-color: #FAF4EE;
+  border: 1px solid #ECE1D3;
+  padding: 2px 7px;
+  border-radius: 12px;
+}
+
+.cart-rec-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cart-rec-scroll::-webkit-scrollbar {
+  display: none;
+}
+.cart-rec-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.cart-rec-card {
+  flex: 0 0 160px;
+  width: 160px;
+  scroll-snap-align: start;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.cart-rec-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.cart-rec-img-box {
+  width: 100%;
+  height: 110px;
+  background-color: #F8FAFC;
+  border-radius: 6px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.cart-rec-img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.cart-rec-card:hover .cart-rec-img {
+  transform: scale(1.04);
+}
+
+.cart-rec-rating {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  background-color: #388E3C;
+  color: #FFFFFF;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  line-height: 1;
+}
+
+.cart-rec-badge-tag {
+  font-size: 9px;
+  font-weight: 700;
+  color: #85532F;
+  background-color: #FAF4EE;
+  padding: 1px 5px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 4px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.cart-rec-name {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #1E293B;
+  line-height: 1.3;
+  height: 30px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin: 0 0 6px 0;
+  cursor: pointer;
+}
+
+.cart-rec-name:hover {
+  color: #85532F;
+}
+
+.cart-rec-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.cart-rec-price {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.cart-rec-mrp {
+  font-size: 10.5px;
+  color: #94A3B8;
+  text-decoration: line-through;
+}
+
+.cart-rec-discount {
+  font-size: 10px;
+  font-weight: 700;
+  color: #388E3C;
+}
+
+.cart-rec-add-btn {
+  width: 100%;
+  padding: 6px 0;
+  background-color: #FFFFFF;
+  color: #85532F;
+  border: 1.5px solid #85532F;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cart-rec-add-btn:hover {
+  background-color: #85532F;
+  color: #FFFFFF;
+}
+
+.cart-rec-add-btn.added {
+  background-color: #F0FDF4;
+  color: #16A34A;
+  border-color: #86EFAC;
+  cursor: default;
+}
+
 .cart-bottom-checkout-bar {
   position: fixed;
   bottom: 0;

@@ -7,6 +7,7 @@ import { AboutPage } from './pages/AboutPage';
 import { CartPage } from './pages/CartPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CheckoutPage } from './pages/CheckoutPage';
+import { CustomerDetailsPage } from './pages/CustomerDetailsPage';
 import { DesktopNav } from './components/navigation/DesktopNav';
 import { BottomNav } from './components/navigation/BottomNav';
 import './styles/global.css';
@@ -131,6 +132,14 @@ function CheckoutRoute() {
   );
 }
 
+function CustomerDetailsRoute() {
+  return (
+    <div className="app-shell">
+      <CustomerDetailsPage />
+    </div>
+  );
+}
+
 export function App() {
   return (
     <BrowserRouter
@@ -148,6 +157,7 @@ export function App() {
           <Route path="/categories/:categoryId" element={<CategoriesRoute />} />
           <Route path="/about" element={<AboutRoute />} />
           <Route path="/cart" element={<CartRoute />} />
+          <Route path="/customer-details" element={<CustomerDetailsRoute />} />
           <Route path="/product/:id" element={<ProductDetailRoute />} />
           <Route path="/checkout" element={<CheckoutRoute />} />
           {/* Wildcard redirect to home */}
