@@ -3,9 +3,7 @@ import {
   ShieldCheck,
   Truck,
   RotateCcw,
-  Zap,
-  ShoppingBag,
-  Sparkles
+  Zap
 } from 'lucide-react';
 import { useCartWishlist } from '../../context/CartWishlistContext';
 
@@ -26,43 +24,33 @@ export const FlipkartPromoBanners = ({ onSelectProduct }) => {
 
   return (
     <section className="fk-minimal-promo-section" aria-label="Special Offers and Guarantees">
-      {/* 1. Full-Width Luxury Sacred Trio Box Banner */}
-      <div className="fk-trio-feature-banner" onClick={handleAddTrioCombo}>
+      {/* 1. Full-Width Pure Visual Nature Forest Poster (No HTML text overlay) */}
+      <div
+        className="fk-trio-feature-banner"
+        onClick={() => {
+          if (onNavigateCategories) {
+            onNavigateCategories();
+          } else {
+            handleAddTrioCombo();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label="Zenvoro Pure Himalayan Natural Wellness Poster"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            if (onNavigateCategories) onNavigateCategories();
+            else handleAddTrioCombo();
+          }
+        }}
+      >
         <img
-          src="/images/banners/zenvoro_banner_bundle.jpg"
-          alt="The Sacred Trio Ritual Box"
+          src="/images/banners/zenvoro_forest_ritual_banner.jpg"
+          alt="Zenvoro Pure Himalayan Wellness - Natural Forest Ritual"
           className="fk-trio-bg-img"
+          loading="lazy"
         />
-        <div className="fk-trio-gradient-overlay" />
-
-        <div className="fk-trio-content-overlay">
-          <div className="fk-trio-tag-row">
-            <span className="fk-trio-deal-tag">
-              <Sparkles size={11} /> LIMITED LAUNCH DEAL
-            </span>
-            <span className="fk-trio-save-badge">SAVE FLAT ₹2,998</span>
-          </div>
-
-          <h3 className="fk-trio-title">The Sacred Trio Ritual Box</h3>
-          <p className="fk-trio-subtitle">All 3 Flagship Formulations + Complimentary Gold Dosing Spoon</p>
-
-          <div className="fk-trio-cta-row">
-            <div className="fk-trio-pricing">
-              <span className="fk-trio-price">₹3,999</span>
-              <span className="fk-trio-mrp">₹6,997</span>
-              <span className="fk-trio-off">43% OFF</span>
-            </div>
-
-            <button
-              type="button"
-              className="fk-trio-add-btn"
-              onClick={handleAddTrioCombo}
-            >
-              <ShoppingBag size={14} />
-              <span>ADD TRIO TO CART</span>
-            </button>
-          </div>
-        </div>
       </div>
 
       {/* 2. Spacious, Clean 4-Item Trust & Assurance Strip */}

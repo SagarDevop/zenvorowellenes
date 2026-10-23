@@ -5,6 +5,8 @@ import { DesktopNav } from '../components/navigation/DesktopNav';
 import { BottomNav } from '../components/navigation/BottomNav';
 import { OfferStrip } from '../components/ui/OfferStrip';
 import { HeroBanner } from '../components/ui/HeroBanner';
+import { DealsForYou } from '../components/ui/DealsForYou';
+import { DiwaliBanner } from '../components/ui/DiwaliBanner';
 import { ProductSection } from '../components/ui/ProductSection';
 import { FlipkartPromoBanners } from '../components/ui/FlipkartPromoBanners';
 import { useCartWishlist } from '../context/CartWishlistContext';
@@ -95,8 +97,14 @@ export const HomePage = () => {
         <Header
           onSearch={setSearchQuery}
           categories={categories}
-          selectedCategory={selectedCategory}
-          onSelectCategory={setSelectedCategory}
+          selectedCategory={null}
+          onSelectCategory={(catId) => {
+            if (!catId || catId === 'all') {
+              navigate('/categories');
+            } else {
+              navigate(`/categories?cat=${catId}`);
+            }
+          }}
           onSwitchTab={handleSwitchTab}
         />
 
@@ -112,11 +120,21 @@ export const HomePage = () => {
             onSelectProduct={handleSelectProduct}
           />
 
-          {/* 3. The 3 Flagship Formulations (Rendered ONCE without duplication) */}
+          {/* 3. Flipkart-Style "Deals for You" with Live Countdown Timer */}
+          <DealsForYou
+            products={allProducts}
+            onSelectProduct={handleSelectProduct}
+            onViewAll={() => handleSwitchTab('categories')}
+          />
+
+          {/* 4. Festive Diwali Special Banner (Shilajit Gummy Feature) */}
+          <DiwaliBanner onSelectProduct={handleSelectProduct} />
+
+          {/* 3. The 3 Flagship Gummy Formulations */}
           <ProductSection
-            title="The 3 Sacred Rituals"
-            badge="FLAGSHIP"
-            subtitle="Authentic Ayurvedic Formulations"
+            title="The 3 Sacred Gummy Rituals"
+            badge="100% VEG"
+            subtitle="Himalayan Shilajit, Ashwagandha & Multivitamins"
             actionText="View All"
             actionLinkStyle="chevron"
             products={displayedProducts}

@@ -36,7 +36,12 @@ export const ProductCard = ({ product, showRating = true, sizePosition = 'below'
           loading="lazy"
         />
 
-        {/* Size Pill when positioned on image overlay (e.g. Everyday essentials) */}
+        {/* Floating Badge (e.g. BEST SELLER / STRESS RELIEF) */}
+        {product.badge && (
+          <div className="product-card-badge">{product.badge}</div>
+        )}
+
+        {/* Size Pill when positioned on image overlay */}
         {sizePosition === 'overlay' && product.size && (
           <div className="size-pill-overlay">{product.size}</div>
         )}
@@ -55,7 +60,7 @@ export const ProductCard = ({ product, showRating = true, sizePosition = 'below'
 
       {/* Product Details & Pricing */}
       <div className="product-details">
-        {/* Size Pill when positioned below image (e.g. Best Sellers) */}
+        {/* Size Pill when positioned below image */}
         {sizePosition === 'below' && product.size && (
           <div className="product-size-pill">{product.size}</div>
         )}
@@ -77,3 +82,4 @@ export const ProductCard = ({ product, showRating = true, sizePosition = 'below'
     </article>
   );
 };
+

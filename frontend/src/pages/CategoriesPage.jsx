@@ -4,14 +4,13 @@ import {
   Search,
   ShoppingBag,
   Star,
-  Plus,
   Sparkles,
   Zap,
   Brain,
   Moon,
   X
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useCartWishlist } from '../context/CartWishlistContext';
 import { api, STATIC_CATEGORIES } from '../services/api';
 import { SearchOverlay } from '../components/search/SearchOverlay';
@@ -30,11 +29,34 @@ export const CategoriesPage = ({
   initialCategory = 'all'
 }) => {
   const navigate = useNavigate();
-  const [selectedCat, setSelectedCat] = useState(initialCategory);
+  const location = useLocation();
+  const { categoryId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const activeCategoryParam = searchParams.get('cat') || categoryId || location.state?.category || initialCategory;
+
+  const [selectedCat, setSelectedCat] = useState(activeCategoryParam || 'all');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [products, setProducts] = useState([]);
-  const { cartCount, addToCart } = useCartWishlist();
+  const { cartCount } = useCartWishlist();
+
+  // Keep selected category synchronized when URL query or param changes
+  useEffect(() => {
+    const target = searchParams.get('cat') || categoryId || location.state?.category;
+    if (target) {
+      setSelectedCat(target);
+    }
+  }, [searchParams, categoryId, location.state]);
+
+  const handleSelectCategoryTab = (catId) => {
+    setSelectedCat(catId);
+    if (!catId || catId === 'all') {
+      setSearchParams({});
+    } else {
+      setSearchParams({ cat: catId });
+    }
+  };
 
   const handleBack = () => {
     if (onBack) onBack();
@@ -155,7 +177,7 @@ export const CategoriesPage = ({
                 type="button"
                 key={cat.id}
                 className={`cat-side-item ${isActive ? 'active' : ''}`}
-                onClick={() => setSelectedCat(cat.id)}
+                onClick={() => handleSelectCategoryTab(cat.id)}
               >
                 <div className={`cat-side-icon-box ${isActive ? 'active' : ''}`}>
                   <IconComp size={20} />
@@ -188,7 +210,7 @@ export const CategoriesPage = ({
                 className="cat-reset-btn"
                 onClick={() => {
                   setSearchQuery('');
-                  setSelectedCat('all');
+                  handleSelectCategoryTab('all');
                 }}
               >
                 View All 3 Rituals
@@ -201,29 +223,37 @@ export const CategoriesPage = ({
                   key={product.id}
                   className="cat-product-card"
                   onClick={() => handleSelectProduct(product)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleSelectProduct(product);
+                    }
+                  }}
                 >
                   <div className="cat-prod-img-wrap">
                     <img
                       src={product.image}
                       alt={product.name}
                       className="cat-prod-img"
+                      loading="lazy"
                     />
-                    {product.size && (
-                      <span className="cat-prod-size">{product.size}</span>
-                    )}
-                    {product.badge && (
-                      <span className="cat-prod-badge">{product.badge}</span>
-                    )}
                   </div>
 
                   <div className="cat-prod-details">
                     <div className="cat-prod-brand">ZENVORO WELLNESS</div>
                     <h3 className="cat-prod-name">{product.name}</h3>
 
-                    {/* Rating Pill */}
-                    <div className="cat-prod-rating-pill">
-                      <span>{product.rating || '4.9'}</span>
-                      <Star size={10} fill="#FFFFFF" color="#FFFFFF" />
+                    {/* Rating & Size Row */}
+                    <div className="cat-prod-meta-row">
+                      <div className="cat-prod-rating-pill">
+                        <span>{product.rating || '4.9'}</span>
+                        <Star size={10} fill="#FFFFFF" color="#FFFFFF" />
+                      </div>
+                      {product.size && (
+                        <span className="cat-prod-clean-size">{product.size}</span>
+                      )}
                     </div>
 
                     {/* Price Row */}
@@ -236,18 +266,6 @@ export const CategoriesPage = ({
                         <span className="cat-prod-disc">{product.discountPercent}% off</span>
                       )}
                     </div>
-
-                    <button
-                      type="button"
-                      className="cat-prod-add-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        addToCart(product.id, 1);
-                      }}
-                    >
-                      <Plus size={14} />
-                      <span>ADD</span>
-                    </button>
                   </div>
                 </div>
               ))}

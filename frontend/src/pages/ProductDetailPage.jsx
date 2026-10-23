@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ArrowLeft,
   Share2,
@@ -8,6 +8,7 @@ import {
   Check,
   MapPin,
   ChevronRight,
+  ChevronLeft,
   ShieldCheck,
   RotateCcw,
   Truck,
@@ -16,66 +17,12 @@ import {
   Copy,
   Zap,
   Leaf,
-  ExternalLink,
   CreditCard
 } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCartWishlist } from '../context/CartWishlistContext';
 import { api } from '../services/api';
 
-// Authentic Vector Logos for Marketplaces
-const AmazonLogo = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <rect width="24" height="24" rx="6" fill="#232F3E" />
-    <path
-      d="M5.5 15.2C8.5 17.2 13.2 17.5 16.8 15C17.1 14.8 17.6 15.2 17.3 15.6C13.5 18.8 8 18.3 4.9 16.1C4.6 15.8 5 15.1 5.5 15.2Z"
-      fill="#FF9900"
-    />
-    <path
-      d="M17.6 14C17.3 13.6 15.6 14 14.9 14.2C14.7 14.3 14.7 14.6 14.9 14.7C15.9 15.4 17.2 15.4 17.6 15.2C18 15 17.9 14.3 17.6 14Z"
-      fill="#FF9900"
-    />
-    <path
-      d="M13.2 8C13.2 9.2 12.3 10 11 10C9.8 10 9 9.2 9 8C9 6.8 9.9 6 11.1 6C12.3 6 13.2 6.8 13.2 8Z"
-      fill="#FFFFFF"
-    />
-  </svg>
-);
-
-const FlipkartLogo = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <rect width="24" height="24" rx="6" fill="#85532F" />
-    <path
-      d="M6.5 7.5H17.5L16.2 17H7.8L6.5 7.5Z"
-      fill="#FFE500"
-    />
-    <path
-      d="M9.5 7.5V5.5C9.5 4.4 10.4 3.5 11.5 3.5H12.5C13.6 3.5 14.5 4.4 14.5 5.5V7.5"
-      stroke="#FFE500"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-    />
-    <path
-      d="M10 10.5H14M10 12.8H13M10 15H11.5"
-      stroke="#85532F"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
-const MeeshoLogo = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <rect width="24" height="24" rx="6" fill="#9A1672" />
-    <path
-      d="M6.5 16.5V8.5L9.5 12.5L12 8.5L14.5 12.5L17.5 8.5V16.5"
-      stroke="#FFFFFF"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 export const ProductDetailPage = ({
   product: productProp,
@@ -93,6 +40,31 @@ export const ProductDetailPage = ({
   const [combo, setCombo] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (imgs) => {
+    if (!imgs || imgs.length <= 1) return;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        // Swiped left -> next image
+        setActiveImageIndex((prev) => (prev + 1) % imgs.length);
+      } else {
+        // Swiped right -> prev image
+        setActiveImageIndex((prev) => (prev - 1 + imgs.length) % imgs.length);
+      }
+    }
+  };
 
   // Sync / fetch product by route parameter :id
   useEffect(() => {
@@ -227,17 +199,7 @@ export const ProductDetailPage = ({
   const currentOriginalPrice = selectedVariant ? selectedVariant.originalPrice : product.originalPrice;
   const currentDiscount = selectedVariant ? selectedVariant.discount : `${product.discountPercent}% off`;
 
-  const amazonUrl =
-    product.marketplaceLinks?.amazon ||
-    `https://www.amazon.in/s?k=${encodeURIComponent(product.name)}`;
 
-  const flipkartUrl =
-    product.marketplaceLinks?.flipkart ||
-    `https://www.flipkart.com/search?q=${encodeURIComponent(product.name)}`;
-
-  const meeshoUrl =
-    product.marketplaceLinks?.meesho ||
-    `https://www.meesho.com/search?q=${encodeURIComponent(product.name)}`;
 
   return (
     <div className="pdp-page">
@@ -280,42 +242,113 @@ export const ProductDetailPage = ({
 
       {/* Main PDP Container */}
       <div className="pdp-content-container">
-        {/* 2. Hero Product Media Showcase */}
-        <div className="pdp-media-card">
-          <div className="pdp-image-viewport">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="pdp-main-image"
-            />
+        {/* 2. Flipkart-Style Swipeable Product Image Showcase */}
+        {(() => {
+          const productImages = product?.images?.length
+            ? product.images
+            : [product?.image, product?.backImage].filter(Boolean);
+          const currentImage = productImages[activeImageIndex] || product?.image;
 
-            {/* Wishlist Heart Button */}
-            <button
-              type="button"
-              className={`pdp-wishlist-btn ${isWishlisted ? 'active' : ''}`}
-              onClick={() => toggleWishlist(product.id)}
-              aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-            >
-              <Heart
-                size={20}
-                fill={isWishlisted ? '#EF4444' : 'none'}
-                color={isWishlisted ? '#EF4444' : '#64748B'}
-              />
-            </button>
+          return (
+            <div className="pdp-media-card">
+              <div
+                className="pdp-image-viewport"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={() => handleTouchEnd(productImages)}
+              >
+                <img
+                  src={currentImage}
+                  alt={`${product.name} - view ${activeImageIndex + 1}`}
+                  className="pdp-main-image"
+                />
 
-            {/* ZENVORO Certified Genuine Formulation Badge */}
-            <div className="pdp-assured-tag">
-              <Zap size={13} fill="#CBA243" color="#CBA243" />
-              <span>ZENVORO Certified</span>
+                {/* Wishlist Heart Button */}
+                <button
+                  type="button"
+                  className={`pdp-wishlist-btn ${isWishlisted ? 'active' : ''}`}
+                  onClick={() => toggleWishlist(product.id)}
+                  aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+                >
+                  <Heart
+                    size={20}
+                    fill={isWishlisted ? '#EF4444' : 'none'}
+                    color={isWishlisted ? '#EF4444' : '#64748B'}
+                  />
+                </button>
+
+                {/* ZENVORO Certified Genuine Formulation Badge */}
+                <div className="pdp-assured-tag">
+                  <Zap size={13} fill="#CBA243" color="#CBA243" />
+                  <span>ZENVORO Certified</span>
+                </div>
+
+
+                {/* Left/Right Arrow Controls */}
+                {productImages.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      className="pdp-arrow-btn pdp-arrow-left"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+                      }}
+                      aria-label="Previous photo"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+                    <button
+                      type="button"
+                      className="pdp-arrow-btn pdp-arrow-right"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveImageIndex((prev) => (prev + 1) % productImages.length);
+                      }}
+                      aria-label="Next photo"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
+                  </>
+                )}
+
+                {/* Flipkart Dot Indicators */}
+                {productImages.length > 1 && (
+                  <div className="pdp-img-dots">
+                    {productImages.map((_, idx) => (
+                      <span
+                        key={idx}
+                        className={`pdp-dot ${activeImageIndex === idx ? 'active' : ''}`}
+                        onClick={() => setActiveImageIndex(idx)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Flipkart-Style Pure Image Thumbnails Row (No Text, Just Images) */}
+              {productImages.length > 1 && (
+                <div className="pdp-fk-thumbs-track">
+                  {productImages.map((img, idx) => (
+                    <div
+                      key={idx}
+                      className={`pdp-fk-thumb-card ${activeImageIndex === idx ? 'active' : ''}`}
+                      onClick={() => setActiveImageIndex(idx)}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <img
+                        src={img}
+                        alt=""
+                        className="pdp-fk-thumb-img"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-
-            {/* Image Indicator Dots */}
-            <div className="pdp-img-dots">
-              <span className={`pdp-dot ${activeImageIndex === 0 ? 'active' : ''}`} />
-              <span className={`pdp-dot ${activeImageIndex === 1 ? 'active' : ''}`} />
-            </div>
-          </div>
-        </div>
+          );
+        })()}
 
         {/* 3. Product Title, Rating & Pricing Section */}
         <section className="pdp-section pdp-info-card">
@@ -349,72 +382,6 @@ export const ProductDetailPage = ({
           </div>
         </section>
 
-        {/* 4. "Also Available On" Marketplace Redirection Strip (Design 1) */}
-        <section className="pdp-section pdp-marketplaces-card">
-          <div className="pdp-marketplaces-header">
-            <div className="pdp-marketplaces-title-wrap">
-              <span className="pdp-mp-badge">BUY FROM MARKETPLACES</span>
-              <h3 className="pdp-marketplaces-heading">Also Available On</h3>
-            </div>
-            <span className="pdp-mp-verified-tag">✓ Official Store Listings</span>
-          </div>
-
-          <div className="pdp-marketplaces-grid">
-            {/* Amazon */}
-            <a
-              href={amazonUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pdp-marketplace-btn amazon"
-              title={`Buy ${product.name} on Amazon`}
-            >
-              <div className="pdp-mp-icon-box">
-                <AmazonLogo />
-              </div>
-              <div className="pdp-mp-content">
-                <span className="pdp-mp-pre">Buy on</span>
-                <span className="pdp-mp-name amazon">Amazon</span>
-              </div>
-              <ExternalLink size={13} className="pdp-mp-ext-icon" />
-            </a>
-
-            {/* Flipkart */}
-            <a
-              href={flipkartUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pdp-marketplace-btn flipkart"
-              title={`Buy ${product.name} on Flipkart`}
-            >
-              <div className="pdp-mp-icon-box">
-                <FlipkartLogo />
-              </div>
-              <div className="pdp-mp-content">
-                <span className="pdp-mp-pre">Buy on</span>
-                <span className="pdp-mp-name flipkart">Flipkart</span>
-              </div>
-              <ExternalLink size={13} className="pdp-mp-ext-icon" />
-            </a>
-
-            {/* Meesho */}
-            <a
-              href={meeshoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pdp-marketplace-btn meesho"
-              title={`Buy ${product.name} on Meesho`}
-            >
-              <div className="pdp-mp-icon-box">
-                <MeeshoLogo />
-              </div>
-              <div className="pdp-mp-content">
-                <span className="pdp-mp-pre">Buy on</span>
-                <span className="pdp-mp-name meesho">Meesho</span>
-              </div>
-              <ExternalLink size={13} className="pdp-mp-ext-icon" />
-            </a>
-          </div>
-        </section>
 
         {/* 4. Available Coupons & Bank Offers */}
         <section className="pdp-section pdp-offers-card">

@@ -225,6 +225,62 @@
     font-size: 13px;
     color: var(--text-secondary);
   }
+
+  /* Desktop Deals For You Spotlight */
+  .deals-for-you-section {
+    margin: 20px 0 24px 0;
+    padding: 18px 22px 20px 22px;
+    border-radius: 18px;
+  }
+
+  .deals-main-title {
+    font-size: 20px;
+  }
+
+  .deal-spotlight-card {
+    grid-template-columns: 140px 1fr;
+    gap: 20px;
+    padding: 14px 18px;
+  }
+
+  .deal-spotlight-name {
+    font-size: 16px;
+  }
+
+  .deal-price-current {
+    font-size: 17px;
+  }
+
+  /* Desktop Diwali Banner */
+  .diwali-banner-section {
+    margin: 20px 0 24px 0;
+  }
+
+  .diwali-banner-card {
+    border-radius: 20px;
+  }
+
+  .diwali-festive-badge {
+    top: 14px;
+    left: 14px;
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  .diwali-cta-pill {
+    bottom: 14px;
+    right: 14px;
+    font-size: 12.5px;
+    padding: 7px 16px;
+  }
+}
+
+/* Tablet Deals For You */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .deal-spotlight-card {
+    grid-template-columns: 130px 1fr;
+    gap: 16px;
+  }
 }
 
 /* Fallback for desktop elements on mobile */

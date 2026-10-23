@@ -16,39 +16,39 @@ import { useNavigate } from 'react-router-dom';
 import { api, STATIC_PRODUCTS } from '../../services/api';
 
 const TRENDING_SEARCHES = [
-  { text: 'Himalayan Shilajit Gold', query: 'Shilajit' },
-  { text: 'Nootropic Mind & Focus', query: 'Nootropic' },
-  { text: 'Cellular Recovery Elixir', query: 'Elixir' },
-  { text: '24K Gold Grade Resin', query: 'Gold' },
-  { text: 'Pure Fulvic Acid 80%', query: 'Fulvic' },
-  { text: 'Deep Sleep Night Ritual', query: 'Sleep' }
+  { text: 'Himalayan Shilajit Gummies', query: 'Shilajit' },
+  { text: 'Ashwagandha Gummies', query: 'Ashwagandha' },
+  { text: 'Multivitamin Daily Gummies', query: 'Multivitamin' },
+  { text: 'Tamarind Shilajit Resin 250mg', query: 'Tamarind' },
+  { text: 'BioPerine Stress Relief', query: 'Stress' },
+  { text: 'Complete Daily Nutrition', query: 'Nutrition' }
 ];
 
 const RITUAL_CARDS = [
   {
     id: 'prod_1',
     category: 'inner_power',
-    name: 'Shilajit Gold Resin',
-    subtitle: 'Boundless Physical Stamina',
-    discount: '40% OFF',
+    name: 'Shilajit Gummies',
+    subtitle: 'Strength, Stamina & Vitality',
+    discount: '33% OFF',
     icon: Flame,
     color: '#85532F'
   },
   {
     id: 'prod_2',
     category: 'brain_focus',
-    name: 'Nootropic Mind Zenith',
-    subtitle: 'Zero Brain Fog & Focus',
-    discount: '35% OFF',
+    name: 'Ashwagandha Gummies',
+    subtitle: 'Stress Relief & Energy',
+    discount: '30% OFF',
     icon: Brain,
     color: '#2563EB'
   },
   {
     id: 'prod_3',
     category: 'deep_recovery',
-    name: 'Cellular Recovery Elixir',
-    subtitle: 'Circadian REM Sleep',
-    discount: '30% OFF',
+    name: 'Multivitamin Gummies',
+    subtitle: 'Complete Daily Nutrition',
+    discount: '33% OFF',
     icon: Moon,
     color: '#7C3AED'
   }

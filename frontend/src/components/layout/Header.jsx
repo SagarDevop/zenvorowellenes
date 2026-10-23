@@ -13,9 +13,9 @@ import { useNavigate } from 'react-router-dom';
 import { SearchOverlay } from '../search/SearchOverlay';
 
 const categoryPillMap = {
-  inner_power: { label: 'Shilajit Gold', icon: Flame },
-  brain_focus: { label: 'Mind & Focus', icon: Brain },
-  deep_recovery: { label: 'Deep Sleep', icon: Moon }
+  inner_power: { label: 'Shilajit Gummies', icon: Flame },
+  brain_focus: { label: 'Ashwagandha', icon: Brain },
+  deep_recovery: { label: 'Multivitamins', icon: Moon }
 };
 
 export const Header = ({
@@ -117,7 +117,7 @@ export const Header = ({
                 setIsSearchOpen(true);
               }}
               readOnly
-              placeholder="Search Shilajit Gold, Nootropic, Elixir..."
+              placeholder="Search Shilajit Gummies, Ashwagandha, Multivitamin..."
             />
           </div>
         </div>
@@ -128,7 +128,13 @@ export const Header = ({
           <button
             type="button"
             className={`fk-cat-pill ${!selectedCategory ? 'active' : ''}`}
-            onClick={() => onSelectCategory(null)}
+            onClick={() => {
+              if (onSelectCategory) {
+                onSelectCategory('all');
+              } else {
+                navigate('/categories');
+              }
+            }}
           >
             <Layers size={13} className="fk-cat-pill-icon" />
             <span>All Rituals</span>
@@ -145,7 +151,13 @@ export const Header = ({
                 type="button"
                 key={cat.id}
                 className={`fk-cat-pill ${isActive ? 'active' : ''}`}
-                onClick={() => onSelectCategory(isActive ? null : cat.id)}
+                onClick={() => {
+                  if (onSelectCategory) {
+                    onSelectCategory(cat.id);
+                  } else {
+                    navigate(`/categories?cat=${cat.id}`);
+                  }
+                }}
               >
                 <IconComp size={13} className="fk-cat-pill-icon" />
                 <span>{mapped.label}</span>

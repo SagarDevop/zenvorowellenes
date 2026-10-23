@@ -1,68 +1,83 @@
 const initialProducts = [
-  // 1. Flagship Shilajit Gold
+  // 1. Shilajit Gummies
   {
     id: 'prod_1',
-    name: 'ZENVORO Pure Himalayan Shilajit Gold Resin (24K Gold Grade)',
-    shortName: 'ZENVORO Himalayan Shilajit Gold Resin (24K Gold Grade)...',
+    name: 'ZENVORO Shilajit Gummies (Strength, Stamina & Vitality)',
+    shortName: 'ZENVORO Shilajit Gummies',
     brand: 'ZENVORO',
     category: 'inner_power',
     section: 'best_sellers',
-    size: '50g Luxury Jar',
-    price: 1499,
-    originalPrice: 2499,
-    discountPercent: 40,
+    size: '30 Gummies',
+    price: 999,
+    originalPrice: 1499,
+    discountPercent: 33,
     rating: 4.9,
     reviewCount: '1.8k',
-    image: '/images/products/zenvoro_shilajit_gold.png',
+    image: '/images/products/shilazeetgummy.jpeg',
+    backImage: '/images/products/shelazeetgumy back.jpeg',
+    images: [
+      '/images/products/shilazeetgummy.jpeg',
+      '/images/products/shelazeetgumy back.jpeg'
+    ],
     badge: 'BEST SELLER',
     inStock: true,
-    description: 'Sourced from 18,000+ ft pristine Himalayan peaks. Certified >80% Fulvic acid infused with 24K edible gold dust & Ashwagandha for boundless stamina, cellular rejuvenation, and inner strength.'
+    description: 'Made with pure Himalayan Shilajit for peak performance. Enriched with 250mg purified Shilajit resin per chewable gummy in delicious tamarind flavour. Boosts overall well-being, male health, and stamina.'
   },
-  // 2. Nootropic Mind & Focus
+  // 2. Ashwagandha Gummies
   {
     id: 'prod_2',
-    name: 'ZENVORO Nootropic Mind & Focus Zenith (60 Capsules)',
-    shortName: 'ZENVORO Nootropic Mind & Focus Zenith (60 Capsules)...',
+    name: 'ZENVORO Ashwagandha Gummies (Stress Relief & Vitality)',
+    shortName: 'ZENVORO Ashwagandha Gummies',
     brand: 'ZENVORO',
     category: 'brain_focus',
     section: 'best_sellers',
-    size: '60 Veg Capsules',
-    price: 1299,
-    originalPrice: 1999,
-    discountPercent: 35,
+    size: '30 Gummies',
+    price: 899,
+    originalPrice: 1299,
+    discountPercent: 30,
     rating: 4.8,
     reviewCount: '1.2k',
-    image: '/images/products/zenvoro_nootropic_focus.png',
-    badge: 'MIND & FOCUS',
+    image: '/images/products/Aswgantha gummy.jpeg',
+    backImage: '/images/products/Aswagantha gummy back.jpeg',
+    images: [
+      '/images/products/Aswgantha gummy.jpeg',
+      '/images/products/Aswagantha gummy back.jpeg'
+    ],
+    badge: 'STRESS RELIEF',
     inStock: true,
-    description: 'Clinically formulated cognitive amplifier blending Lion’s Mane mushroom, Organic Brahmi, Ginkgo Biloba & Shankhpushpi for razor-sharp mental focus, stress reduction, and sustained creative energy.'
+    description: 'Formulated with premium Ashwagandha extract (150mg) enhanced with BioPerine® (5mg) and Vitamin B6 (1.2mg) for maximum absorption. Relieves everyday stress, calms the mind, and fuels sustained energy.'
   },
-  // 3. Cellular Recovery & Sleep Elixir
+  // 3. Multivitamin Gummies
   {
     id: 'prod_3',
-    name: 'ZENVORO Royal Cellular Recovery & Sleep Elixir (30ml)',
-    shortName: 'ZENVORO Royal Cellular Recovery & Sleep Elixir (30ml)...',
+    name: 'ZENVORO Multivitamin Gummies (Complete Daily Nutrition)',
+    shortName: 'ZENVORO Multivitamin Gummies',
     brand: 'ZENVORO',
     category: 'deep_recovery',
     section: 'best_sellers',
-    size: '30 ml Dropper',
-    price: 1199,
-    originalPrice: 1799,
+    size: '30 Gummies',
+    price: 799,
+    originalPrice: 1199,
     discountPercent: 33,
     rating: 4.9,
     reviewCount: '980',
-    image: '/images/products/zenvoro_recovery_elixir.png',
-    badge: 'RECOVERY',
+    image: '/images/products/Multivitamin gummy.jpeg',
+    backImage: '/images/products/multivitamin gummy back.jpeg',
+    images: [
+      '/images/products/Multivitamin gummy.jpeg',
+      '/images/products/multivitamin gummy back.jpeg'
+    ],
+    badge: 'DAILY NUTRITION',
     inStock: true,
-    description: 'Sublingual cellular sleep & vitality elixir with Kashmiri Saffron, Valerian Root, Chamomile & pure Magnesium Glycinate. Wakes you up restored, energized, and ready to dominate.'
+    description: 'Comprehensive daily health supplement packed with essential Vitamins (A, B-Complex, C, D2) and vital Minerals (Iron, Magnesium, Zinc, Selenium). Boosts immune defense, vision health, and all-day vitality.'
   }
 ];
 
 const initialCategories = [
-  { id: 'inner_power', name: 'Inner Power', icon: 'Zap' },
-  { id: 'brain_focus', name: 'Mind & Focus', icon: 'Brain' },
-  { id: 'deep_recovery', name: 'Sleep & Recovery', icon: 'Moon' },
-  { id: 'trio_ritual', name: 'The Trio Ritual', icon: 'Sparkles' }
+  { id: 'inner_power', name: 'Shilajit Gummies', icon: 'Zap' },
+  { id: 'brain_focus', name: 'Ashwagandha', icon: 'Brain' },
+  { id: 'deep_recovery', name: 'Multivitamins', icon: 'Moon' },
+  { id: 'trio_ritual', name: 'The Gummy Trio', icon: 'Sparkles' }
 ];
 
 const initialBanners = {
@@ -72,11 +87,11 @@ const initialBanners = {
     discount: '20% OFF'
   },
   hero: {
-    badge: '100% PURE HIMALAYAN AYURVEDA',
+    badge: '100% VEGETARIAN AYURVEDIC GUMMIES',
     title: 'Elevate Your Inner Power',
-    subtitle: 'Pure Himalayan Shilajit Gold, Nootropic Focus & Cellular Recovery Elixir',
+    subtitle: 'Pure Himalayan Shilajit, Stress-Relief Ashwagandha & Complete Daily Multivitamins',
     ctaText: 'EXPLORE THE TRIO >',
-    image: '/images/banners/zenvoro_hero_banner.png'
+    image: '/images/products/shilazeetgummy.jpeg'
   }
 };
 
@@ -85,3 +100,4 @@ const initialCart = [
 ];
 
 module.exports = { initialProducts, initialCategories, initialBanners, initialCart };
+

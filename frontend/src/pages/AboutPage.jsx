@@ -85,9 +85,10 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
       {/* 2. Luxury Hero Card with Cinematic Himalayan Backdrop */}
       <section className="about-hero-card">
         <img
-          src="/images/banners/zenvoro_banner_shilajit.jpg"
-          alt="Himalayan Sourcing"
+          src="/images/banners/zenvoro_himalayan_philosophy.jpg"
+          alt="Himalayan Sourcing at 18,000 Ft"
           className="about-hero-bg-img"
+          loading="eager"
         />
         <div className="about-hero-gradient" />
 
@@ -266,20 +267,20 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
           >
             <div className="about-ritual-media">
               <img
-                src="/images/products/zenvoro_shilajit_gold.png"
-                alt="Shilajit Gold Resin"
+                src="/images/products/shilazeetgummy.jpeg"
+                alt="Shilajit Gummies"
                 className="about-ritual-img"
               />
             </div>
             <div className="about-ritual-info">
               <div className="about-ritual-tag">
                 <Flame size={12} color="#85532F" />
-                <span>RITUAL I • RESIN</span>
+                <span>RITUAL I • GUMMIES</span>
               </div>
-              <h4 className="about-ritual-name">Himalayan Shilajit Gold</h4>
+              <h4 className="about-ritual-name">Himalayan Shilajit Gummies</h4>
               <div className="about-compounds-row">
-                <span className="about-compound-tag">&gt;80% Fulvic Acid</span>
-                <span className="about-compound-tag">24K Gold</span>
+                <span className="about-compound-tag">250mg Shilajit</span>
+                <span className="about-compound-tag">Tamarind Flavour</span>
               </div>
               <div className="about-ritual-footer">
                 <span className="about-ritual-link">View Details</span>
@@ -295,20 +296,20 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
           >
             <div className="about-ritual-media">
               <img
-                src="/images/products/zenvoro_nootropic_focus.png"
-                alt="Nootropic Mind & Focus"
+                src="/images/products/Aswgantha gummy.jpeg"
+                alt="Ashwagandha Gummies"
                 className="about-ritual-img"
               />
             </div>
             <div className="about-ritual-info">
               <div className="about-ritual-tag">
                 <Brain size={12} color="#85532F" />
-                <span>RITUAL II • CAPSULES</span>
+                <span>RITUAL II • GUMMIES</span>
               </div>
-              <h4 className="about-ritual-name">Nootropic Mind &amp; Focus</h4>
+              <h4 className="about-ritual-name">Ashwagandha Gummies</h4>
               <div className="about-compounds-row">
-                <span className="about-compound-tag">Lion’s Mane</span>
-                <span className="about-compound-tag">Brahmi 50%</span>
+                <span className="about-compound-tag">150mg Ashwagandha</span>
+                <span className="about-compound-tag">BioPerine® + B6</span>
               </div>
               <div className="about-ritual-footer">
                 <span className="about-ritual-link">View Details</span>
@@ -324,20 +325,20 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
           >
             <div className="about-ritual-media">
               <img
-                src="/images/products/zenvoro_recovery_elixir.png"
-                alt="Cellular Recovery Elixir"
+                src="/images/products/Multivitamin gummy.jpeg"
+                alt="Multivitamin Daily Gummies"
                 className="about-ritual-img"
               />
             </div>
             <div className="about-ritual-info">
               <div className="about-ritual-tag">
                 <Moon size={12} color="#85532F" />
-                <span>RITUAL III • ELIXIR</span>
+                <span>RITUAL III • GUMMIES</span>
               </div>
-              <h4 className="about-ritual-name">Cellular Recovery Elixir</h4>
+              <h4 className="about-ritual-name">Multivitamin Daily Gummies</h4>
               <div className="about-compounds-row">
-                <span className="about-compound-tag">Kashmiri Saffron</span>
-                <span className="about-compound-tag">Magnesium Glycinate</span>
+                <span className="about-compound-tag">Vitamins A to D2</span>
+                <span className="about-compound-tag">Zinc &amp; Minerals</span>
               </div>
               <div className="about-ritual-footer">
                 <span className="about-ritual-link">View Details</span>

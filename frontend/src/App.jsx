@@ -132,13 +132,19 @@ function CheckoutRoute() {
 
 export function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true
+      }}
+    >
       <CartWishlistProvider>
         <HashRedirectHandler />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/categories" element={<CategoriesRoute />} />
+          <Route path="/categories/:categoryId" element={<CategoriesRoute />} />
           <Route path="/about" element={<AboutRoute />} />
           <Route path="/cart" element={<CartRoute />} />
           <Route path="/product/:id" element={<ProductDetailRoute />} />

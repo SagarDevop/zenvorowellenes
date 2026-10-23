@@ -366,11 +366,12 @@ a {
 
 .fk-hero-full-slide {
   position: relative;
-  height: 205px;
   width: 100%;
+  aspect-ratio: 3 / 2;
   cursor: pointer;
   overflow: hidden;
-  background-color: #2D1A10;
+  background-color: #1a0f07;
+  border-radius: 14px;
 }
 
 .fk-hero-full-img {
@@ -512,6 +513,492 @@ a {
   background-color: #85532F;
 }
 
+/* =======================================================
+   FLIPKART-STYLE "DEALS FOR YOU" WITH LIVE COUNTDOWN TIMER
+   ======================================================= */
+.deals-for-you-section {
+  margin: 14px 14px 18px 14px;
+  background-color: #FFFFFF;
+  border: 1px solid #EFE5D9;
+  border-radius: 16px;
+  padding: 14px 12px 14px 14px;
+  box-shadow: 0 3px 12px rgba(61, 35, 20, 0.06);
+}
+
+.deals-header-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #F5EBE1;
+}
+
+.deals-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.deals-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.deals-main-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1E293B;
+  letter-spacing: -0.3px;
+  margin: 0;
+  font-family: inherit;
+}
+
+.deals-live-badge {
+  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+  color: #FFFFFF;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 4px rgba(220, 38, 38, 0.35);
+  animation: pulseLive 2s infinite ease-in-out;
+}
+
+@keyframes pulseLive {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.03); }
+}
+
+.deals-timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.deals-timer-icon {
+  color: #DC2626;
+  flex-shrink: 0;
+}
+
+.deals-timer-label {
+  font-size: 11.5px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.deals-digits-group {
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+}
+
+.deals-digit-box {
+  background-color: #2D1A10;
+  color: #F8ECE0;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: ui-monospace, monospace;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+.deals-digit-box.sec {
+  background-color: #85532F;
+  color: #FFFFFF;
+}
+
+.deals-colon {
+  font-size: 11px;
+  font-weight: 800;
+  color: #85532F;
+}
+
+.deals-view-all-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #85532F 0%, #6E3F20 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(110, 63, 32, 0.3);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.deals-view-all-btn:hover {
+  transform: scale(1.08);
+}
+
+.deals-view-all-btn:active {
+  transform: scale(0.95);
+}
+
+.deals-track {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.deals-track::-webkit-scrollbar {
+  display: none;
+}
+
+.deal-item-card {
+  flex: 0 0 calc(50% - 6px);
+  max-width: 175px;
+  min-width: 135px;
+  scroll-snap-align: start;
+  background: #FFFFFF;
+  border: 1px solid #ECE3D7;
+  border-radius: 12px;
+  padding: 8px 8px 10px 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.deal-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(61, 35, 20, 0.1);
+  border-color: #CBA243;
+}
+
+.deal-item-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #FAF7F2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.deal-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+  transition: transform 0.25s ease;
+}
+
+.deal-item-card:hover .deal-item-img {
+  transform: scale(1.04);
+}
+
+.deal-pill-tag {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background-color: #2D1A10;
+  color: #E5C383;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.deal-rating-pill {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  background-color: #16A34A;
+  color: #FFFFFF;
+  font-size: 8.5px;
+  font-weight: 800;
+  padding: 1.5px 5px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.deal-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.deal-item-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1E293B;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.deal-pricing-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.deal-price-current {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1E293B;
+}
+
+.deal-price-mrp {
+  font-size: 10.5px;
+  color: #94A3B8;
+  text-decoration: line-through;
+}
+
+.deal-price-discount {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #16A34A;
+}
+
+.deal-savings-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #85532F;
+  background-color: #F8F3ED;
+  border-radius: 4px;
+  padding: 2px 5px;
+  width: fit-content;
+  margin-top: 2px;
+}
+
+/* Flipkart-Style Single Spotlight Deal Card */
+.deal-spotlight-card {
+  display: grid;
+  grid-template-columns: 115px 1fr;
+  gap: 12px;
+  background: linear-gradient(135deg, #FAF7F2 0%, #F5EEE4 100%);
+  border: 1.5px solid #EAE0D3;
+  border-radius: 14px;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  align-items: center;
+}
+
+.deal-spotlight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(61, 35, 20, 0.1);
+  border-color: #CBA243;
+}
+
+.deal-spotlight-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  border: 1px solid #ECE3D7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deal-spotlight-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
+  transition: transform 0.25s ease;
+}
+
+.deal-spotlight-card:hover .deal-spotlight-img {
+  transform: scale(1.05);
+}
+
+.deal-spotlight-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background-color: #2D1A10;
+  color: #E5C383;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.deal-spotlight-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.deal-spotlight-sub-badge {
+  font-size: 9px;
+  font-weight: 800;
+  color: #85532F;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.deal-spotlight-name {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.25;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deal-spotlight-desc {
+  font-size: 11px;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deal-spotlight-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.deal-claim-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #85532F 0%, #6E3F20 100%);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(110, 63, 32, 0.25);
+  transition: transform 0.1s ease, opacity 0.15s ease;
+}
+
+.deal-claim-btn:active {
+  transform: scale(0.96);
+  opacity: 0.95;
+}
+
+/* =======================================================
+   DIWALI FESTIVE SPECIAL SHILAJIT BANNER
+   ======================================================= */
+.diwali-banner-section {
+  margin: 14px 14px 18px 14px;
+}
+
+.diwali-banner-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(180, 83, 9, 0.2), 0 2px 6px rgba(0, 0, 0, 0.12);
+  border: 1.5px solid #E5C383;
+  background-color: #2D0814;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.diwali-banner-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(203, 162, 67, 0.35);
+  border-color: #FDF3E7;
+}
+
+.diwali-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.diwali-banner-card:hover .diwali-banner-img {
+  transform: scale(1.025);
+}
+
+.diwali-festive-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(35, 6, 15, 0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(229, 195, 131, 0.7);
+  color: #F8ECE0;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 3.5px 9px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.4px;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.diwali-diya-icon {
+  font-size: 11px;
+}
+
+.diwali-cta-pill {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #CBA243 0%, #A98028 100%);
+  color: #2D0814;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s ease;
+}
+
+.diwali-banner-card:hover .diwali-cta-pill {
+  transform: scale(1.06);
+}
+
 /* 2. Spacious, Uncongested Promo Banners (Below Products) */
 .fk-minimal-promo-section {
   margin: 12px 14px 18px 14px;
@@ -522,13 +1009,21 @@ a {
 
 .fk-trio-feature-banner {
   position: relative;
-  height: 190px;
   width: 100%;
-  border-radius: 14px;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 3px 12px rgba(61, 35, 20, 0.08);
-  background-color: #2D1A10;
+  box-shadow: 0 4px 18px rgba(35, 45, 25, 0.16), 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1.5px solid rgba(133, 83, 47, 0.22);
+  background-color: #121E14;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.fk-trio-feature-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(25, 38, 20, 0.25);
+  border-color: #A98028;
 }
 
 .fk-trio-bg-img {
@@ -537,11 +1032,11 @@ a {
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
 .fk-trio-feature-banner:hover .fk-trio-bg-img {
-  transform: scale(1.03);
+  transform: scale(1.025);
 }
 
 .fk-trio-gradient-overlay {
@@ -756,8 +1251,8 @@ a {
 .product-media-container {
   position: relative;
   width: 100%;
-  padding-top: 100%; /* 1:1 square aspect ratio */
-  background-color: #FAFAFA;
+  padding-top: 108%; /* Clean, taller aspect ratio for gummy bottles */
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F5 100%);
   overflow: hidden;
 }
 
@@ -768,8 +1263,64 @@ a {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 6px;
+  padding: 8px;
+  transition: transform 0.25s ease;
 }
+
+.product-card:hover .product-img {
+  transform: scale(1.04);
+}
+
+.product-card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(135deg, #85532F 0%, #5C3A21 100%);
+  color: #FFFFFF;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 2.5px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  z-index: 5;
+  box-shadow: 0 1px 3px rgba(61, 35, 20, 0.2);
+}
+
+.card-add-btn {
+  margin-top: 8px;
+  width: 100%;
+  height: 32px;
+  border-radius: 16px;
+  border: 1px solid #85532F;
+  background-color: #FFFFFF;
+  color: #85532F;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.card-add-btn:hover {
+  background-color: #85532F;
+  color: #FFFFFF;
+}
+
+.card-add-btn:active {
+  transform: scale(0.97);
+}
+
+.card-add-btn.in-cart {
+  background-color: #2E7D32;
+  border-color: #2E7D32;
+  color: #FFFFFF;
+}
+
 
 /* Floating Badges on Product Image */
 .wishlist-btn {
@@ -1473,10 +2024,103 @@ a {
   background-color: #85532F;
 }
 
+/* Flipkart-Style PDP Image Counter */
+.pdp-image-counter {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 12px;
+  z-index: 5;
+  letter-spacing: 0.5px;
+}
+
+/* Flipkart-Style Swipe Arrows */
+.pdp-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #334155;
+  cursor: pointer;
+  z-index: 6;
+  transition: all 0.15s ease;
+}
+
+.pdp-arrow-btn:hover {
+  background-color: #FFFFFF;
+  color: #85532F;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.pdp-arrow-left {
+  left: 8px;
+}
+
+.pdp-arrow-right {
+  right: 8px;
+}
+
+/* Flipkart-Style Pure Image Thumbnails Row (No Text) */
+.pdp-fk-thumbs-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 14px 12px 14px;
+  background-color: #FFFFFF;
+}
+
+.pdp-fk-thumb-card {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  border: 1.5px solid #E2E8F0;
+  background-color: #FAF8F5;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  overflow: hidden;
+}
+
+.pdp-fk-thumb-card:hover {
+  border-color: #85532F;
+}
+
+.pdp-fk-thumb-card.active {
+  border: 2px solid #85532F;
+  background-color: #FAF4EE;
+  box-shadow: 0 0 0 2px rgba(133, 83, 47, 0.18);
+}
+
+.pdp-fk-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
 /* 4. Product Info Section */
 .pdp-info-card {
   padding-top: 12px;
 }
+
 
 .pdp-brand-tag {
   font-size: 11px;
@@ -2636,13 +3280,13 @@ a {
 /* 1. Luxury Hero Card with Cinematic Himalayan Backdrop */
 .about-hero-card {
   position: relative;
-  height: 250px;
+  height: 260px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #2D1A10;
+  background-color: #1A1009;
 }
 
 .about-hero-bg-img {
@@ -2651,14 +3295,14 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 25%;
+  object-position: center 30%;
   display: block;
 }
 
 .about-hero-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(32, 17, 8, 0.70) 0%, rgba(32, 17, 8, 0.85) 65%, #FAF6F0 100%);
+  background: linear-gradient(180deg, rgba(22, 12, 6, 0.45) 0%, rgba(22, 12, 6, 0.72) 65%, #FAF6F0 100%);
   pointer-events: none;
 }
 
@@ -3459,27 +4103,31 @@ a {
   align-items: center;
   gap: 12px;
   border: 1px solid #ECE1D3;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 12px;
+  padding: 12px;
   background-color: #FFFFFF;
   cursor: pointer;
-  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.cat-product-card:hover {
+  border-color: #85532F;
+  box-shadow: 0 3px 10px rgba(133, 83, 47, 0.08);
 }
 
 .cat-product-card:active {
   transform: scale(0.99);
   border-color: #85532F;
-  box-shadow: 0 2px 8px rgba(133, 83, 47, 0.1);
 }
 
 .cat-prod-img-wrap {
   position: relative;
-  width: 85px;
-  height: 85px;
+  width: 88px;
+  height: 88px;
   flex-shrink: 0;
   background-color: #FAF7F2;
-  border-radius: 8px;
-  padding: 4px;
+  border-radius: 10px;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3490,31 +4138,11 @@ a {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  transition: transform 0.25s ease;
 }
 
-.cat-prod-size {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  background: rgba(255, 255, 255, 0.92);
-  font-size: 9px;
-  font-weight: 700;
-  padding: 1px 4px;
-  border-radius: 3px;
-  color: #57534E;
-  border: 1px solid #ECE1D3;
-}
-
-.cat-prod-badge {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  background-color: #85532F;
-  color: #FFFFFF;
-  font-size: 8.5px;
-  font-weight: 800;
-  padding: 1px 4px;
-  border-radius: 3px;
+.cat-product-card:hover .cat-prod-img {
+  transform: scale(1.04);
 }
 
 .cat-prod-details {
@@ -3526,19 +4154,27 @@ a {
   font-size: 9.5px;
   font-weight: 700;
   color: #85532F;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .cat-prod-name {
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   color: #2D1A10;
-  line-height: 1.3;
-  margin: 2px 0 4px;
+  line-height: 1.35;
+  margin: 2px 0 5px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.cat-prod-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
 }
 
 .cat-prod-rating-pill {
@@ -3549,54 +4185,39 @@ a {
   color: #FFFFFF;
   font-size: 10.5px;
   font-weight: 700;
-  padding: 1px 5px;
+  padding: 1.5px 6px;
   border-radius: 4px;
-  margin-bottom: 4px;
+}
+
+.cat-prod-clean-size {
+  font-size: 11px;
+  font-weight: 500;
+  color: #78716C;
 }
 
 .cat-prod-price-row {
   display: flex;
   align-items: baseline;
   gap: 6px;
-  margin-bottom: 6px;
+  margin-bottom: 0;
 }
 
 .cat-prod-price {
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 800;
   color: #2D1A10;
 }
 
 .cat-prod-mrp {
-  font-size: 11px;
+  font-size: 11.5px;
   color: #94A3B8;
   text-decoration: line-through;
 }
 
 .cat-prod-disc {
-  font-size: 11px;
-  font-weight: 700;
-  color: #15803D;
-}
-
-.cat-prod-add-btn {
-  background: #FFFFFF;
-  border: 1.5px solid #85532F;
-  color: #85532F;
   font-size: 11.5px;
   font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.cat-prod-add-btn:active {
-  background-color: #85532F;
-  color: #FFFFFF;
+  color: #15803D;
 }
 
 /* -------------------------------------------------------
