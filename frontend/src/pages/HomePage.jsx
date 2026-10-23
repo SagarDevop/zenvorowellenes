@@ -75,7 +75,7 @@ export const HomePage = () => {
   const displayedProducts = filterProducts(allProducts);
 
   const handleCopyOffer = (code) => {
-    showToast(`Coupon ${code} copied to clipboard`);
+    showToast(`Coupon ${code} copied`);
   };
 
   const handleExploreHero = () => {
@@ -165,13 +165,6 @@ export const HomePage = () => {
         activeTab="home"
         onTabChange={handleSwitchTab}
       />
-
-      {/* Interactive Toast Notification */}
-      {toastMessage && (
-        <div className="toast-notice" role="alert">
-          <span>{toastMessage}</span>
-        </div>
-      )}
     </div>
   );
 };

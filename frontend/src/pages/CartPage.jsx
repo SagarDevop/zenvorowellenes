@@ -61,9 +61,9 @@ export const CartPage = ({
         percent: 20,
         discount: Math.round(cartData.totalPrice * 0.2)
       });
-      showToast('Coupon POWER20 applied! 20% discount activated');
+      showToast('Coupon POWER20 applied');
     } else {
-      showToast('Invalid coupon code. Try POWER20');
+      showToast('Invalid coupon. Try POWER20');
     }
     setCouponInput('');
   };
@@ -114,7 +114,7 @@ export const CartPage = ({
         <button
           type="button"
           className="cart-change-addr-btn"
-          onClick={() => showToast('Pincode 110001 verified for Free Express Delivery')}
+          onClick={() => showToast('Pincode 110001 verified')}
         >
           Change
         </button>

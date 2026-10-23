@@ -29,7 +29,7 @@ export const BottomNav = ({ activeTab: activeTabProp, onTabChange }) => {
     else if (tabId === 'about') navigate('/about');
     else if (tabId === 'cart') navigate('/cart');
     else if (tabId === 'account') {
-      showToast('ZENVORO Inner Power Club: Welcome to the Elite Wellness Circle');
+      showToast('ZENVORO Inner Power Club');
     }
   };
 

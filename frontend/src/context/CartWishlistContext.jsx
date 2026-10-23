@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { api } from '../services/api';
 
 const CartWishlistContext = createContext();
@@ -14,6 +14,7 @@ export const CartWishlistProvider = ({ children }) => {
   });
   const [wishlist, setWishlist] = useState(new Set());
   const [toastMessage, setToastMessage] = useState(null);
+  const toastTimerRef = useRef(null);
 
   const refreshCart = async () => {
     try {
@@ -32,10 +33,11 @@ export const CartWishlistProvider = ({ children }) => {
   }, []);
 
   const showToast = (msg) => {
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
     setToastMessage(msg);
-    setTimeout(() => {
-      setToastMessage((prev) => (prev === msg ? null : prev));
-    }, 2500);
+    toastTimerRef.current = setTimeout(() => {
+      setToastMessage(null);
+    }, 2000);
   };
 
   const toggleWishlist = (productId) => {

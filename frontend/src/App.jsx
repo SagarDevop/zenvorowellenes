@@ -65,15 +65,16 @@ function ScrollToTop() {
 }
 
 /**
- * Global Toast Notification
+ * Global Toast Notification (Minimal, Single-Line, Clean)
  */
 function GlobalToast() {
   const { toastMessage } = useCartWishlist();
   if (!toastMessage) return null;
 
   return (
-    <div className="toast-notice" role="alert">
-      <span>{toastMessage}</span>
+    <div className="toast-notice" role="alert" aria-live="polite">
+      <span className="toast-indicator-dot" />
+      <span className="toast-text">{toastMessage}</span>
     </div>
   );
 }

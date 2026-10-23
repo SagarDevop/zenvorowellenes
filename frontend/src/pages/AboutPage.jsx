@@ -52,7 +52,7 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
       }
     } else {
       navigator.clipboard?.writeText?.(window.location.href);
-      showToast('Page link copied to clipboard');
+      showToast('Link copied to clipboard');
     }
   };
 

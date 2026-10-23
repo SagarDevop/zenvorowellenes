@@ -48,7 +48,7 @@ export const DesktopNav = ({ onSearch, onSwitchTab }) => {
           <button
             className="delivery-location-btn"
             style={{ marginLeft: '16px' }}
-            onClick={() => showToast('Delivery location: Delhi NCR & Pan India (Free Express Shipping)')}
+            onClick={() => showToast('Free Express Shipping across India')}
           >
             <MapPin size={16} color="#85532F" />
             <span>Deliver to <span className="location-name">New Delhi 110001</span></span>
@@ -94,7 +94,7 @@ export const DesktopNav = ({ onSearch, onSwitchTab }) => {
 
           <button
             className="desktop-nav-btn"
-            onClick={() => showToast(`Wishlist contains ${wishlist.size} saved items`)}
+            onClick={() => showToast(`Wishlist: ${wishlist.size} saved items`)}
           >
             <Heart size={18} color={wishlist.size > 0 ? '#DC2626' : '#3D2314'} />
             <span>Wishlist ({wishlist.size})</span>

@@ -125,7 +125,7 @@ export const CheckoutPage = () => {
     e.preventDefault();
     if (couponInput.trim().toUpperCase() === 'POWER20') {
       setAppliedCoupon('POWER20');
-      showToast('Coupon POWER20 applied! 20% discount added');
+      showToast('Coupon POWER20 applied');
     } else {
       showToast('Invalid coupon. Try POWER20');
     }

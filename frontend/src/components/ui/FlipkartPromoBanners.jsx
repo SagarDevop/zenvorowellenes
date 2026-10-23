@@ -18,7 +18,7 @@ export const FlipkartPromoBanners = ({ onSelectProduct }) => {
         { productId: 'prod_2', quantity: 1 },
         { productId: 'prod_3', quantity: 1 }
       ],
-      'The Sacred Trio Box added to cart! Flat ₹2,998 saved.'
+      'The Sacred Trio Box added to cart'
     );
   };
 

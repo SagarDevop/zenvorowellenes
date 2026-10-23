@@ -128,13 +128,13 @@ export const ProductDetailPage = ({
       }
     } else {
       navigator.clipboard?.writeText?.(window.location.href);
-      showToast('Product link copied to clipboard');
+      showToast('Link copied to clipboard');
     }
   };
 
   const handleCopyCoupon = (code) => {
     navigator.clipboard?.writeText?.(code);
-    showToast(`Coupon code ${code} copied! Extra 20% discount applied`);
+    showToast(`Coupon ${code} copied`);
   };
 
   const isInCart = Boolean(
