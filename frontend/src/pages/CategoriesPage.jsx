@@ -14,6 +14,8 @@ import { useNavigate, useLocation, useParams, useSearchParams } from 'react-rout
 import { useCartWishlist } from '../context/CartWishlistContext';
 import { api, STATIC_CATEGORIES } from '../services/api';
 import { SearchOverlay } from '../components/search/SearchOverlay';
+import { CategoriesSkeleton } from '../components/ui/Skeleton';
+import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 const categoryIconMap = {
   all: ShoppingBag,
@@ -39,6 +41,7 @@ export const CategoriesPage = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { cartCount } = useCartWishlist();
 
   // Keep selected category synchronized when URL query or param changes
@@ -73,8 +76,10 @@ export const CategoriesPage = ({
   };
 
   useEffect(() => {
+    setLoading(true);
     api.getProducts().then((data) => {
       setProducts(data || []);
+      setLoading(false);
     });
   }, []);
 
@@ -165,7 +170,10 @@ export const CategoriesPage = ({
       </div>
 
       {/* 3. Flipkart Split Layout: Vertical Left Tabs + Right Products */}
-      <div className="cat-split-layout">
+      {loading ? (
+        <CategoriesSkeleton />
+      ) : (
+        <div className="cat-split-layout">
         {/* Left Vertical Category Nav */}
         <aside className="cat-sidebar no-scrollbar">
           {allCategoriesList.map((cat) => {
@@ -233,7 +241,7 @@ export const CategoriesPage = ({
                   }}
                 >
                   <div className="cat-prod-img-wrap">
-                    <img
+                    <ImageWithSkeleton
                       src={product.image}
                       alt={product.name}
                       className="cat-prod-img"
@@ -272,7 +280,7 @@ export const CategoriesPage = ({
                       {product.id === 'prod_1' ? (
                         <span className="cat-prod-disc">DIWALI OFFER — 33% OFF</span>
                       ) : product.id === 'prod_2' ? (
-                        <span className="cat-prod-disc">26% OFF</span>
+                        <span className="cat-prod-disc">24% OFF</span>
                       ) : product.id === 'prod_3' ? (
                         <span className="cat-prod-disc">20% OFF</span>
                       ) : (
@@ -288,6 +296,7 @@ export const CategoriesPage = ({
           )}
         </main>
       </div>
+      )}
 
       {/* Flipkart-Style Full White Search Overlay */}
       <SearchOverlay

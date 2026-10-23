@@ -9,6 +9,7 @@ import { DealsForYou } from '../components/ui/DealsForYou';
 import { DiwaliBanner } from '../components/ui/DiwaliBanner';
 import { ProductSection } from '../components/ui/ProductSection';
 import { FlipkartPromoBanners } from '../components/ui/FlipkartPromoBanners';
+import { HomeSkeleton } from '../components/ui/Skeleton';
 import { useCartWishlist } from '../context/CartWishlistContext';
 import { api } from '../services/api';
 
@@ -106,46 +107,52 @@ export const HomePage = () => {
         />
 
         <main className="main-content">
-          {/* 1. Promotional Offer Strip */}
-          <OfferStrip offer={banners?.announcement} onCopyCode={handleCopyOffer} />
+          {loading ? (
+            <HomeSkeleton />
+          ) : (
+            <>
+              {/* 1. Promotional Offer Strip */}
+              <OfferStrip offer={banners?.announcement} onCopyCode={handleCopyOffer} />
 
-          {/* 2. Interactive Flipkart-Style Sale Carousel */}
-          <HeroBanner
-            banners={banners}
-            banner={banners?.hero}
-            onExplore={handleExploreHero}
-            onSelectProduct={handleSelectProduct}
-          />
+              {/* 2. Interactive Flipkart-Style Sale Carousel */}
+              <HeroBanner
+                banners={banners}
+                banner={banners?.hero}
+                onExplore={handleExploreHero}
+                onSelectProduct={handleSelectProduct}
+              />
 
-          {/* 3. Flipkart-Style "Deals for You" with Live Countdown Timer */}
-          <DealsForYou
-            products={allProducts}
-            onSelectProduct={handleSelectProduct}
-            onViewAll={() => handleSwitchTab('categories')}
-          />
+              {/* 3. Flipkart-Style "Deals for You" with Live Countdown Timer */}
+              <DealsForYou
+                products={allProducts}
+                onSelectProduct={handleSelectProduct}
+                onViewAll={() => handleSwitchTab('categories')}
+              />
 
-          {/* 4. Festive Diwali Special Banner (Shilajit Gummy Feature) */}
-          <DiwaliBanner onSelectProduct={handleSelectProduct} />
+              {/* 4. Festive Diwali Special Banner (Shilajit Gummy Feature) */}
+              <DiwaliBanner onSelectProduct={handleSelectProduct} />
 
-          {/* 3. The 3 Flagship Gummy Formulations */}
-          <ProductSection
-            title="The 3 Sacred Gummy Rituals"
-            badge="100% VEG"
-            subtitle="Himalayan Shilajit, Ashwagandha & Multivitamins"
-            actionText="View All"
-            actionLinkStyle="chevron"
-            products={displayedProducts}
-            showRating={true}
-            sizePosition="below"
-            onActionClick={() => handleSwitchTab('categories')}
-            onSelectProduct={handleSelectProduct}
-          />
+              {/* 3. The 3 Flagship Gummy Formulations */}
+              <ProductSection
+                title="The 3 Sacred Gummy Rituals"
+                badge="100% VEG"
+                subtitle="Himalayan Shilajit, Ashwagandha & Multivitamins"
+                actionText="View All"
+                actionLinkStyle="chevron"
+                products={displayedProducts}
+                showRating={true}
+                sizePosition="below"
+                onActionClick={() => handleSwitchTab('categories')}
+                onSelectProduct={handleSelectProduct}
+              />
 
-          {/* 4. Flipkart-Style Promotional Offer Banners & Purity Standards */}
-          <FlipkartPromoBanners
-            onSelectProduct={handleSelectProduct}
-            onNavigateCategories={() => handleSwitchTab('categories')}
-          />
+              {/* 4. Flipkart-Style Promotional Offer Banners & Purity Standards */}
+              <FlipkartPromoBanners
+                onSelectProduct={handleSelectProduct}
+                onNavigateCategories={() => handleSwitchTab('categories')}
+              />
+            </>
+          )}
         </main>
 
         {/* Desktop & Mobile Footer */}

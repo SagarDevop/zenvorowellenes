@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, ArrowRight } from 'lucide-react';
+import { ImageWithSkeleton } from './ImageWithSkeleton';
 
 export const DiwaliBanner = ({ onSelectProduct }) => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export const DiwaliBanner = ({ onSelectProduct }) => {
         }}
       >
         {/* Crisp Full-Artwork Diwali Special Shilajit Banner */}
-        <img
+        <ImageWithSkeleton
           src="/images/banners/diwali_shilajit_banner.jpg"
           alt="Diwali Special Festive Offer - Pure Himalayan Shilajit Gummies"
           className="diwali-banner-img"

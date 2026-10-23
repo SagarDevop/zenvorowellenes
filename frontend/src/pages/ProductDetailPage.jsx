@@ -22,6 +22,8 @@ import {
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCartWishlist } from '../context/CartWishlistContext';
 import { api } from '../services/api';
+import { PdpSkeleton } from '../components/ui/Skeleton';
+import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 
 export const ProductDetailPage = ({
@@ -177,8 +179,8 @@ export const ProductDetailPage = ({
 
   if (loading) {
     return (
-      <div className="pdp-page" style={{ minHeight: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ color: '#64748B', fontWeight: 600 }}>Loading product details...</p>
+      <div className="pdp-page" style={{ minHeight: '100dvh' }}>
+        <PdpSkeleton />
       </div>
     );
   }
@@ -261,7 +263,7 @@ export const ProductDetailPage = ({
                 onTouchMove={handleTouchMove}
                 onTouchEnd={() => handleTouchEnd(productImages)}
               >
-                <img
+                <ImageWithSkeleton
                   src={currentImage}
                   alt={`${product.name} - view ${activeImageIndex + 1}`}
                   className="pdp-main-image"
@@ -373,7 +375,7 @@ export const ProductDetailPage = ({
           {/* Price Breakdown */}
           <div className="pdp-price-block">
             <div className="pdp-special-tag">
-              {product.id === 'prod_1' ? 'DIWALI OFFER — 33% OFF' : product.id === 'prod_2' ? '26% OFF' : product.id === 'prod_3' ? '20% OFF' : 'Special Price'}
+              {product.id === 'prod_1' ? 'DIWALI OFFER — 33% OFF' : product.id === 'prod_2' ? '24% OFF' : product.id === 'prod_3' ? '20% OFF' : 'Special Price'}
             </div>
             <div className="pdp-price-numbers-row">
               <span className="pdp-price-current">₹{currentPrice}</span>
@@ -413,7 +415,7 @@ export const ProductDetailPage = ({
                 <Tag size={15} color="#85532F" />
               </div>
               <div className="pdp-offer-text">
-                <strong>Special Offer:</strong> Single Bottle at <strong>₹380</strong> (26% OFF)
+                <strong>Special Offer:</strong> Single Bottle at <strong>₹380</strong> (24% OFF)
               </div>
             </div>
           )}
@@ -501,7 +503,11 @@ export const ProductDetailPage = ({
             <div className="pdp-combo-header">
               <div className="pdp-combo-header-text">
                 <h2 className="pdp-section-heading">Frequently Bought Together</h2>
-                <p className="pdp-section-subtext">Save extra ₹{combo.totalSavings} when purchased as a combo</p>
+                {combo.totalSavings > 0 ? (
+                  <p className="pdp-section-subtext">Save ₹{combo.totalSavings} on this 2-item combo</p>
+                ) : (
+                  <p className="pdp-section-subtext">Buy both together</p>
+                )}
               </div>
               <span className="pdp-combo-badge">
                 <Zap size={11} fill="currentColor" />
@@ -514,7 +520,7 @@ export const ProductDetailPage = ({
               {/* Product 1: Current Product */}
               <div className="pdp-combo-item-card">
                 <div className="pdp-combo-thumb-box">
-                  <img
+                  <ImageWithSkeleton
                     src={combo.mainProduct.image}
                     alt={combo.mainProduct.name}
                     className="pdp-combo-thumb"
@@ -541,7 +547,7 @@ export const ProductDetailPage = ({
                 title="View product details"
               >
                 <div className="pdp-combo-thumb-box">
-                  <img
+                  <ImageWithSkeleton
                     src={combo.companionProduct.image}
                     alt={combo.companionProduct.name}
                     className="pdp-combo-thumb"
@@ -598,7 +604,7 @@ export const ProductDetailPage = ({
                   onClick={() => handleSelectProduct(simProd)}
                 >
                   <div className="pdp-sim-img-wrap">
-                    <img src={simProd.image} alt={simProd.name} className="pdp-sim-img" />
+                    <ImageWithSkeleton src={simProd.image} alt={simProd.name} className="pdp-sim-img" />
                     {simProd.size && <span className="pdp-sim-size">{simProd.size}</span>}
                   </div>
 

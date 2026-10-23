@@ -125,8 +125,8 @@ export const STATIC_PRODUCTS = [
     section: 'best_sellers',
     size: '30 Gummies',
     price: 380,
-    originalPrice: 514,
-    discountPercent: 26,
+    originalPrice: 499,
+    discountPercent: 24,
     rating: 4.8,
     reviewCount: '1,210',
     ratingsCount: '3,450',
@@ -136,7 +136,7 @@ export const STATIC_PRODUCTS = [
       '/images/products/Aswgantha gummy.jpeg',
       '/images/products/Aswagantha gummy back.jpeg'
     ],
-    badge: '26% OFF',
+    badge: '24% OFF',
     inStock: true,
     assured: true,
     companionId: 'prod_3',
@@ -144,8 +144,8 @@ export const STATIC_PRODUCTS = [
     comboSavingsPercent: 22,
     description: 'Formulated with premium Ashwagandha extract (150mg) enhanced with BioPerine® (5mg) and Vitamin B6 (1.2mg) for maximum absorption. Relieves everyday stress, calms the mind, and fuels sustained energy.',
     availableSizes: [
-      { size: '30 Gummies (1 Bottle)', price: 380, originalPrice: 514, discount: '26% off' },
-      { size: '60 Gummies (Pack of 2)', price: 740, originalPrice: 1028, discount: '28% off' }
+      { size: '30 Gummies (1 Bottle)', price: 380, originalPrice: 499, discount: '24% off' },
+      { size: '60 Gummies (Pack of 2)', price: 740, originalPrice: 998, discount: '26% off' }
     ],
     highlights: [
       '150mg Premium Ashwagandha Extract per chewable gummy',
@@ -196,7 +196,7 @@ export const STATIC_PRODUCTS = [
     section: 'best_sellers',
     size: '30 Gummies',
     price: 400,
-    originalPrice: 480,
+    originalPrice: 499,
     discountPercent: 20,
     rating: 4.9,
     reviewCount: '980',
@@ -215,8 +215,8 @@ export const STATIC_PRODUCTS = [
     comboSavingsPercent: 20,
     description: 'Comprehensive daily health supplement packed with essential Vitamins (A, B-Complex, C, D2) and vital Minerals (Iron, Magnesium, Zinc, Selenium). Boosts immune defense, vision health, and all-day vitality.',
     availableSizes: [
-      { size: '30 Gummies (1 Bottle)', price: 400, originalPrice: 480, discount: '20% off' },
-      { size: '60 Gummies (Pack of 2)', price: 780, originalPrice: 960, discount: '20% off' }
+      { size: '30 Gummies (1 Bottle)', price: 400, originalPrice: 499, discount: '20% off' },
+      { size: '60 Gummies (Pack of 2)', price: 780, originalPrice: 998, discount: '22% off' }
     ],
     highlights: [
       'Complete spectrum of essential multivitamins & trace minerals',
@@ -320,10 +320,9 @@ export const api = {
     if (!companionProduct) return null;
 
     const combinedOriginal = (mainProduct.originalPrice || mainProduct.price) + (companionProduct.originalPrice || companionProduct.price);
-    const combinedStandardPrice = mainProduct.price + companionProduct.price;
-    const discount = mainProduct.comboDiscount || 399;
-    const comboPrice = Math.max(combinedStandardPrice - discount, 499);
-    const totalSavings = combinedOriginal - comboPrice;
+    const comboPrice = mainProduct.price + companionProduct.price;
+    const combinedStandardPrice = comboPrice;
+    const totalSavings = Math.max(0, combinedOriginal - comboPrice);
 
     return {
       mainProduct,
@@ -332,7 +331,7 @@ export const api = {
       combinedStandardPrice,
       comboPrice,
       totalSavings,
-      discount
+      discount: 0
     };
   },
 

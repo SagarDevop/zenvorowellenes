@@ -36,7 +36,17 @@ export const DesktopNav = ({ onSearch, onSwitchTab }) => {
               style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid #CBA243' }} 
             />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ fontSize: '1.25rem', fontWeight: '800', letterSpacing: '2px', color: '#3D2314', fontFamily: 'serif' }}>
+              <span style={{
+                fontSize: '1.25rem',
+                fontWeight: '800',
+                letterSpacing: '2px',
+                fontFamily: 'serif',
+                color: '#B58428',
+                background: 'linear-gradient(135deg, #8E6011 0%, #CFA034 45%, #DFB550 55%, #9F7018 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                display: 'inline-block'
+              }}>
                 ZENVORO
               </span>
               <span style={{ fontSize: '0.62rem', fontWeight: '600', letterSpacing: '1.5px', color: '#85532F', marginTop: '-3px' }}>

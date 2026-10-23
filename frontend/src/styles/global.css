@@ -118,9 +118,14 @@ a {
 .fk-brand-name {
   font-size: 14px;
   font-weight: 800;
-  color: #2D1A10;
-  letter-spacing: 0.6px;
+  color: #B58428;
+  background: linear-gradient(135deg, #8E6011 0%, #CFA034 45%, #DFB550 55%, #9F7018 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.8px;
   font-family: serif;
+  display: inline-block;
+  text-shadow: 0 1px 1px rgba(181, 132, 40, 0.1);
 }
 
 .fk-brand-tagline {
@@ -3893,6 +3898,61 @@ a {
   color: #2D1A10;
 }
 
+.about-social-card {
+  background: #FFFFFF;
+  border: 1px solid #ECE1D3;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-social-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #8A776A;
+}
+
+.about-social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.about-social-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.about-social-pill:hover,
+.about-social-pill:active {
+  transform: translateY(-1px);
+}
+
+.about-social-pill.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(188, 24, 136, 0.22);
+}
+
+.about-social-pill.facebook {
+  background: #1877F2;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(24, 119, 242, 0.22);
+}
+
 .about-cta-container {
   margin-top: 14px;
 }
@@ -6445,4 +6505,86 @@ a {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* =======================================================
+   FLIPKART-STYLE SHIMMER SKELETON LOADERS
+   ======================================================= */
+@keyframes fk-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.fk-skeleton {
+  background: linear-gradient(
+    90deg,
+    #ECE5DC 0%,
+    #FAF6F0 50%,
+    #ECE5DC 100%
+  );
+  background-size: 200% 100%;
+  animation: fk-shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+/* Image with Skeleton Wrapper */
+.fk-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F7F3EE;
+}
+
+.fk-image-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.fk-image-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fk-image-element.loading {
+  opacity: 0;
+}
+
+.fk-image-element.loaded {
+  opacity: 1;
+}
+
+/* Page Level Skeleton Containers */
+.home-skeleton-container {
+  padding: 10px 14px 80px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pdp-skeleton-container {
+  padding: 12px 14px 100px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.categories-skeleton-container {
+  display: flex;
+  height: calc(100dvh - 56px);
+  gap: 0;
+}
+
 

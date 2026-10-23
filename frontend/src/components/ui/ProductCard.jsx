@@ -1,6 +1,7 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { ImageWithSkeleton } from './ImageWithSkeleton';
 
 export const ProductCard = ({ product, showRating = true, sizePosition = 'below', onSelectProduct }) => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export const ProductCard = ({ product, showRating = true, sizePosition = 'below'
     >
       {/* Product Image Area with overlays */}
       <div className="product-media-container">
-        <img
+        <ImageWithSkeleton
           src={product.image}
           alt={product.name}
           className="product-img"

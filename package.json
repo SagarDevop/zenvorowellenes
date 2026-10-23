@@ -1,15 +1,10 @@
 {
-  "name": "cleanora-ecommerce-pwa",
+  "name": "zenvoro-wellness-pwa",
   "version": "1.0.0",
-  "description": "Cleanora E-Commerce Progressive Web App reproduced from Google Stitch Project 5980683010556273707",
+  "description": "ZENVORO Luxury Ayurvedic Wellness Maison - Official E-Commerce Web App",
   "scripts": {
-    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-    "dev:backend": "npm --prefix backend run dev",
-    "dev:frontend": "npm --prefix frontend run dev",
-    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"blue,green\" \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
-    "build": "npm --prefix frontend run build"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview"
   }
 }

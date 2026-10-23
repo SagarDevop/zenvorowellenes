@@ -69,9 +69,9 @@ export const AboutModal = ({ isOpen, onClose }) => {
 
           <div className="about-contact-box">
             <h4>Patron Concierge & Support</h4>
-            <p>Email: <strong>concierge@zenvorowellness.com</strong></p>
-            <p>Toll-Free: <strong>1800-ZENVORO (936-8676)</strong></p>
-            <p>New Delhi 110001, India</p>
+            <p>Email: <a href="mailto:info@zenvorowellness.com" style={{ color: '#85532F', textDecoration: 'none' }}><strong>info@zenvorowellness.com</strong></a></p>
+            <p>Helpline: <a href="tel:+919056606053" style={{ color: '#85532F', textDecoration: 'none' }}><strong>+91 90566 06053</strong></a></p>
+            <p>Address: <strong>Katra Khazana, Amritsar, Punjab</strong></p>
           </div>
         </div>
 

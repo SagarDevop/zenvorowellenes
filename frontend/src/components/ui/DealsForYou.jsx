@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Timer, ChevronRight, Star, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { ImageWithSkeleton } from './ImageWithSkeleton';
 
 export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
   const navigate = useNavigate();
@@ -43,12 +44,12 @@ export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
     shortName: 'ZENVORO Ashwagandha Gummies',
     category: 'brain_focus',
     price: 380,
-    originalPrice: 514,
-    discountPercent: 26,
+    originalPrice: 499,
+    discountPercent: 24,
     rating: 4.8,
     reviewCount: '1.2k',
     image: '/images/products/Aswgantha gummy.jpeg',
-    badge: '26% OFF',
+    badge: '24% OFF',
     size: '30 Gummies'
   };
 
@@ -60,7 +61,7 @@ export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
     }
   };
 
-  const savingsAmount = ashwaProduct.originalPrice ? ashwaProduct.originalPrice - ashwaProduct.price : 134;
+  const savingsAmount = ashwaProduct.originalPrice ? ashwaProduct.originalPrice - ashwaProduct.price : 119;
 
   return (
     <section className="deals-for-you-section" aria-label="Deal for You">
@@ -116,7 +117,7 @@ export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
       >
         {/* Left / Top Product Image */}
         <div className="deal-spotlight-media">
-          <img
+          <ImageWithSkeleton
             src={ashwaProduct.image}
             alt={ashwaProduct.name}
             className="deal-spotlight-img"
@@ -124,7 +125,7 @@ export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
           />
 
           <span className="deal-spotlight-badge">
-            FLAT {ashwaProduct.discountPercent || 26}% OFF
+            FLAT {ashwaProduct.discountPercent || 24}% OFF
           </span>
 
           <div className="deal-rating-pill">

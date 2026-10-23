@@ -20,10 +20,13 @@ import {
   Clock,
   Compass,
   Check,
-  X
+  X,
+  Instagram,
+  Facebook
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCartWishlist } from '../context/CartWishlistContext';
+import { ImageWithSkeleton } from '../components/ui/ImageWithSkeleton';
 
 export const AboutPage = ({ onBack, onExploreCatalog }) => {
   const navigate = useNavigate();
@@ -266,7 +269,7 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
             onClick={() => navigate('/product/prod_1')}
           >
             <div className="about-ritual-media">
-              <img
+              <ImageWithSkeleton
                 src="/images/products/shilazeetgummy.jpeg"
                 alt="Shilajit Gummies"
                 className="about-ritual-img"
@@ -295,7 +298,7 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
             onClick={() => navigate('/product/prod_2')}
           >
             <div className="about-ritual-media">
-              <img
+              <ImageWithSkeleton
                 src="/images/products/Aswgantha gummy.jpeg"
                 alt="Ashwagandha Gummies"
                 className="about-ritual-img"
@@ -324,7 +327,7 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
             onClick={() => navigate('/product/prod_3')}
           >
             <div className="about-ritual-media">
-              <img
+              <ImageWithSkeleton
                 src="/images/products/Multivitamin gummy.jpeg"
                 alt="Multivitamin Daily Gummies"
                 className="about-ritual-img"
@@ -449,32 +452,58 @@ export const AboutPage = ({ onBack, onExploreCatalog }) => {
 
       {/* 9. Patron Concierge & Contact */}
       <section className="about-concierge-section">
-        <span className="about-section-tag">PATRON CONCIERGE</span>
+        <span className="about-section-tag">PATRON CONCIERGE &amp; CONNECT</span>
         <h3 className="about-section-heading">Dedicated Wellness Concierge</h3>
 
         <div className="about-concierge-card">
-          <div className="about-concierge-row">
+          <a href="tel:+919056606053" className="about-concierge-row">
             <Phone size={16} color="#85532F" />
             <div>
-              <span className="concierge-lbl">Toll-Free Wellness Hotline</span>
-              <span className="concierge-val">1800-ZENVORO (936-8676)</span>
+              <span className="concierge-lbl">Customer Support &amp; Helpline</span>
+              <span className="concierge-val">+91 90566 06053</span>
             </div>
-          </div>
+          </a>
 
-          <a href="mailto:concierge@zenvorowellness.com" className="about-concierge-row">
+          <a href="mailto:info@zenvorowellness.com" className="about-concierge-row">
             <Mail size={16} color="#85532F" />
             <div>
-              <span className="concierge-lbl">Patron Concierge Email</span>
-              <span className="concierge-val">concierge@zenvorowellness.com</span>
+              <span className="concierge-lbl">Official Email</span>
+              <span className="concierge-val">info@zenvorowellness.com</span>
             </div>
           </a>
 
           <div className="about-concierge-row">
             <MapPin size={16} color="#85532F" />
             <div>
-              <span className="concierge-lbl">Maison Headquarters</span>
-              <span className="concierge-val">Zenvoro Wellness Maison, Connaught Place, New Delhi 110001</span>
+              <span className="concierge-lbl">Registered Address</span>
+              <span className="concierge-val">Katra Khazana, Amritsar, Punjab</span>
             </div>
+          </div>
+        </div>
+
+        {/* Official Social Media Channels */}
+        <div className="about-social-card">
+          <span className="about-social-title">Follow Our Wellness Journey</span>
+          <div className="about-social-grid">
+            <a
+              href="https://www.instagram.com/zenvorowellness?psln=MTN5bW96YXdkdGxtcQ=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="about-social-pill instagram"
+            >
+              <Instagram size={15} />
+              <span>@zenvorowellness</span>
+            </a>
+
+            <a
+              href="https://www.facebook.com/share/19dQLepFc9/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="about-social-pill facebook"
+            >
+              <Facebook size={15} />
+              <span>Facebook</span>
+            </a>
           </div>
         </div>
 

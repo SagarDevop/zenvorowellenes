@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { ImageWithSkeleton } from './ImageWithSkeleton';
 
 export const HeroBanner = ({ banners, banner, onExplore, onSelectProduct }) => {
   const slides = banners?.heroSlides || [
@@ -73,7 +74,7 @@ export const HeroBanner = ({ banners, banner, onExplore, onSelectProduct }) => {
     >
       {/* Full-Image Slide Card (Pure Ad Visual without Text Overlay) */}
       <div className="fk-hero-full-slide" onClick={handleCtaClick}>
-        <img
+        <ImageWithSkeleton
           src={currentSlide.image}
           alt={currentSlide.title || 'ZENVORO Banner'}
           className="fk-hero-full-img"
