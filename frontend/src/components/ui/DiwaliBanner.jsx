@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, ArrowRight } from 'lucide-react';
 
 export const DiwaliBanner = ({ onSelectProduct }) => {
   const navigate = useNavigate();
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const handleBannerClick = () => {
     if (onSelectProduct) {
@@ -27,12 +28,18 @@ export const DiwaliBanner = ({ onSelectProduct }) => {
           }
         }}
       >
+        {/* Shimmer skeleton until banner image loads */}
+        {!imgLoaded && (
+          <div className="fk-skeleton" style={{ position: 'absolute', inset: 0, zIndex: 1 }} />
+        )}
         {/* Crisp Full-Artwork Diwali Special Shilajit Banner */}
         <img
           src="/images/banners/diwali_shilajit_banner.jpg"
           alt="Diwali Special Festive Offer - Pure Himalayan Shilajit Gummies"
           className="diwali-banner-img"
           loading="lazy"
+          onLoad={() => setImgLoaded(true)}
+          style={{ opacity: imgLoaded ? 1 : 0, transition: 'opacity 0.25s ease' }}
         />
 
         {/* Festive Golden Glow Border / Indicator */}

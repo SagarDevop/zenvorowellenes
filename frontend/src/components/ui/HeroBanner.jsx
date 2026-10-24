@@ -25,6 +25,7 @@ export const HeroBanner = ({ banners, banner, onExplore, onSelectProduct }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [loadedMap, setLoadedMap] = useState({});
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -79,11 +80,20 @@ export const HeroBanner = ({ banners, banner, onExplore, onSelectProduct }) => {
     >
       {/* Full-Image Slide Card (Pure Ad Visual without Text Overlay) */}
       <div className="fk-hero-full-slide" onClick={handleCtaClick}>
+        {!loadedMap[currentSlide.image] && (
+          <div className="fk-skeleton" style={{ position: 'absolute', inset: 0, zIndex: 1 }} />
+        )}
         <img
+          key={currentSlide.image}
           src={currentSlide.image}
           alt={currentSlide.title || 'ZENVORO Banner'}
           className="fk-hero-full-img"
           loading="eager"
+          onLoad={() => setLoadedMap((prev) => ({ ...prev, [currentSlide.image]: true }))}
+          style={{
+            opacity: loadedMap[currentSlide.image] ? 1 : 0,
+            transition: 'opacity 0.25s ease'
+          }}
         />
       </div>
 

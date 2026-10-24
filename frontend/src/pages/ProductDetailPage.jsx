@@ -34,7 +34,9 @@ export const ProductDetailPage = ({
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(productProp || null);
-  const [loading, setLoading] = useState(!productProp);
+  const [loading, setLoading] = useState(true);
+  const [mainImgLoaded, setMainImgLoaded] = useState(false);
+  const [comboImgLoaded, setComboImgLoaded] = useState(false);
   const { cartCount, cartData, wishlist, toggleWishlist, addToCart, addComboToCart, showToast } = useCartWishlist();
   const [justAdded, setJustAdded] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState(null);
@@ -70,17 +72,28 @@ export const ProductDetailPage = ({
   // Sync / fetch product by route parameter :id
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMainImgLoaded(false);
     if (productProp && (!id || productProp.id === id)) {
       setProduct(productProp);
-      setLoading(false);
+      const timer = setTimeout(() => setLoading(false), 200);
+      return () => clearTimeout(timer);
     } else if (id) {
       setLoading(true);
+      const startTime = Date.now();
       api.getProductById(id).then((found) => {
-        setProduct(found);
-        setLoading(false);
+        const elapsed = Date.now() - startTime;
+        const delay = Math.max(0, 220 - elapsed);
+        setTimeout(() => {
+          setProduct(found);
+          setLoading(false);
+        }, delay);
       });
     }
   }, [id, productProp]);
+
+  useEffect(() => {
+    setMainImgLoaded(false);
+  }, [activeImageIndex]);
 
   // Load combo details and similar products whenever product changes
   useEffect(() => {
@@ -261,11 +274,18 @@ export const ProductDetailPage = ({
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={() => handleTouchEnd(productImages)}
+                style={{ position: 'relative' }}
               >
+                {!mainImgLoaded && (
+                  <div className="fk-skeleton" style={{ position: 'absolute', inset: 0, zIndex: 1, borderRadius: '16px' }} />
+                )}
                 <img
+                  key={currentImage}
                   src={currentImage}
                   alt={`${product.name} - view ${activeImageIndex + 1}`}
                   className="pdp-main-image"
+                  onLoad={() => setMainImgLoaded(true)}
+                  style={{ opacity: mainImgLoaded ? 1 : 0, transition: 'opacity 0.25s ease' }}
                 />
 
                 {/* Wishlist Heart Button */}
@@ -545,11 +565,17 @@ export const ProductDetailPage = ({
                 onClick={() => handleSelectProduct(combo.companionProduct)}
                 title="View product details"
               >
-                <div className="pdp-combo-thumb-box">
+                <div className="pdp-combo-thumb-box" style={{ position: 'relative' }}>
+                  {!comboImgLoaded && (
+                    <div className="fk-skeleton" style={{ position: 'absolute', inset: 0, zIndex: 1, borderRadius: '8px' }} />
+                  )}
                   <img
                     src={combo.companionProduct.image}
                     alt={combo.companionProduct.name}
                     className="pdp-combo-thumb"
+                    loading="lazy"
+                    onLoad={() => setComboImgLoaded(true)}
+                    style={{ opacity: comboImgLoaded ? 1 : 0, transition: 'opacity 0.2s ease' }}
                   />
                 </div>
                 <div className="pdp-combo-item-details">

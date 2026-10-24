@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
   const navigate = useNavigate();
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   // Dynamic live countdown timer ticking down to midnight
   const [timeLeft, setTimeLeft] = useState(() => {
@@ -115,12 +116,17 @@ export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
         }}
       >
         {/* Left / Top Product Image */}
-        <div className="deal-spotlight-media">
+        <div className="deal-spotlight-media" style={{ position: 'relative' }}>
+          {!imgLoaded && (
+            <div className="fk-skeleton" style={{ position: 'absolute', inset: 0, zIndex: 1, borderRadius: '12px' }} />
+          )}
           <img
             src={ashwaProduct.image}
             alt={ashwaProduct.name}
             className="deal-spotlight-img"
             loading="lazy"
+            onLoad={() => setImgLoaded(true)}
+            style={{ opacity: imgLoaded ? 1 : 0, transition: 'opacity 0.2s ease' }}
           />
 
           <span className="deal-spotlight-badge">

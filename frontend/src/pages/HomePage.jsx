@@ -25,6 +25,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const startTime = Date.now();
       try {
         setLoading(true);
         const [cats, bans, prods] = await Promise.all([
@@ -35,9 +36,27 @@ export const HomePage = () => {
         setCategories(cats);
         setBanners(bans);
         setAllProducts(prods);
+
+        // Preload primary hero slide image for smooth initial load
+        const primaryHeroImg = bans?.heroSlides?.[0]?.image;
+        if (primaryHeroImg) {
+          await new Promise((resolve) => {
+            const img = new Image();
+            img.src = primaryHeroImg;
+            if (img.complete) {
+              resolve();
+            } else {
+              img.onload = () => resolve();
+              img.onerror = () => resolve();
+              setTimeout(resolve, 350);
+            }
+          });
+        }
+        const elapsed = Date.now() - startTime;
+        const delay = Math.max(0, 220 - elapsed);
+        setTimeout(() => setLoading(false), delay);
       } catch (err) {
         console.error('Failed to load home page data:', err);
-      } finally {
         setLoading(false);
       }
     };

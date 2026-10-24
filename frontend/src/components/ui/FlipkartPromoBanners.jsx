@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ShieldCheck,
   Truck,
@@ -9,6 +9,7 @@ import { useCartWishlist } from '../../context/CartWishlistContext';
 
 export const FlipkartPromoBanners = ({ onSelectProduct, onNavigateCategories }) => {
   const { addComboToCart } = useCartWishlist();
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const handleAddTrioCombo = (e) => {
     e.stopPropagation();
@@ -45,11 +46,16 @@ export const FlipkartPromoBanners = ({ onSelectProduct, onNavigateCategories }) 
           }
         }}
       >
+        {!imgLoaded && (
+          <div className="fk-skeleton" style={{ position: 'absolute', inset: 0, zIndex: 1 }} />
+        )}
         <img
           src="/images/banners/zenvoro_forest_ritual_banner.jpg"
           alt="Zenvoro Pure Himalayan Wellness - Natural Forest Ritual"
           className="fk-trio-bg-img"
           loading="lazy"
+          onLoad={() => setImgLoaded(true)}
+          style={{ opacity: imgLoaded ? 1 : 0, transition: 'opacity 0.25s ease' }}
         />
       </div>
 

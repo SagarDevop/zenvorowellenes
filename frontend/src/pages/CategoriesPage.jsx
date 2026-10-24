@@ -76,9 +76,14 @@ export const CategoriesPage = ({
 
   useEffect(() => {
     setLoading(true);
+    const startTime = Date.now();
     api.getProducts().then((data) => {
-      setProducts(data || []);
-      setLoading(false);
+      const elapsed = Date.now() - startTime;
+      const delay = Math.max(0, 200 - elapsed);
+      setTimeout(() => {
+        setProducts(data || []);
+        setLoading(false);
+      }, delay);
     });
   }, []);
 
