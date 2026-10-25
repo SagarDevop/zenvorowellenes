@@ -282,11 +282,11 @@ export const CategoriesPage = ({
                         <span className="cat-prod-mrp">₹{product.originalPrice}</span>
                       )}
                       {product.id === 'prod_1' ? (
-                        <span className="cat-prod-disc">DIWALI OFFER — 33% OFF</span>
-                      ) : product.id === 'prod_2' ? (
-                        <span className="cat-prod-disc">24% OFF</span>
-                      ) : product.id === 'prod_3' ? (
                         <span className="cat-prod-disc">20% OFF</span>
+                      ) : product.id === 'prod_2' ? (
+                        <span className="cat-prod-disc">15% OFF</span>
+                      ) : product.id === 'prod_3' ? (
+                        <span className="cat-prod-disc">15% OFF</span>
                       ) : (
                         product.discountPercent && (
                           <span className="cat-prod-disc">{product.discountPercent}% off</span>

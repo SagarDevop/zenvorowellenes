@@ -10,9 +10,9 @@ export const STATIC_CATEGORIES = [
 
 export const STATIC_BANNERS = {
   announcement: {
-    text: 'Diwali Festive Special: Free Express Shipping across India | 100% Ayurvedic & Vegetarian',
-    code: '',
-    discount: ''
+    text: 'Diwali Festive Special: Extra 5% OFF with code INFLUENCER5 • Free Express Shipping across India',
+    code: 'INFLUENCER5',
+    discount: '5% OFF'
   },
   heroSlides: [
     {
@@ -53,9 +53,9 @@ export const STATIC_PRODUCTS = [
     category: 'inner_power',
     section: 'best_sellers',
     size: '30 Gummies',
-    price: 400,
-    originalPrice: 599,
-    discountPercent: 33,
+    price: 399,
+    originalPrice: 499,
+    discountPercent: 20,
     rating: 4.9,
     reviewCount: '1,840',
     ratingsCount: '4,920',
@@ -65,7 +65,7 @@ export const STATIC_PRODUCTS = [
       '/images/products/shilazeetgummy.jpeg',
       '/images/products/shelazeetgumy back.jpeg'
     ],
-    badge: 'DIWALI OFFER — 33% OFF',
+    badge: '20% OFF',
     inStock: true,
     assured: true,
     companionId: 'prod_2',
@@ -78,9 +78,9 @@ export const STATIC_PRODUCTS = [
       meesho: 'https://www.meesho.com/search?q=Zenvoro+Gummies'
     },
     availableSizes: [
-      { size: '30 Gummies (1 Bottle)', price: 400, originalPrice: 599, discount: '33% off' },
-      { size: '60 Gummies (Pack of 2)', price: 799, originalPrice: 1199, discount: '33% off' },
-      { size: '90 Gummies (Pack of 3)', price: 1199, originalPrice: 1799, discount: '33% off' }
+      { size: '30 Gummies (1 Bottle)', price: 399, originalPrice: 499, discount: '20% off' },
+      { size: '60 Gummies (Pack of 2)', price: 779, originalPrice: 998, discount: '22% off' },
+      { size: '90 Gummies (Pack of 3)', price: 1149, originalPrice: 1497, discount: '23% off' }
     ],
     highlights: [
       '250mg Purified Himalayan Shilajit Resin per chewable gummy',
@@ -130,9 +130,9 @@ export const STATIC_PRODUCTS = [
     category: 'brain_focus',
     section: 'best_sellers',
     size: '30 Gummies',
-    price: 380,
+    price: 424,
     originalPrice: 499,
-    discountPercent: 24,
+    discountPercent: 15,
     rating: 4.8,
     reviewCount: '1,210',
     ratingsCount: '3,450',
@@ -142,7 +142,7 @@ export const STATIC_PRODUCTS = [
       '/images/products/Aswgantha gummy.jpeg',
       '/images/products/Aswagantha gummy back.jpeg'
     ],
-    badge: '24% OFF',
+    badge: '15% OFF',
     inStock: true,
     assured: true,
     companionId: 'prod_3',
@@ -150,8 +150,8 @@ export const STATIC_PRODUCTS = [
     comboSavingsPercent: 22,
     description: 'Formulated with premium Ashwagandha extract (150mg) enhanced with BioPerine® (5mg) and Vitamin B6 (1.2mg) for maximum absorption. Relieves everyday stress, calms the mind, and fuels sustained energy.',
     availableSizes: [
-      { size: '30 Gummies (1 Bottle)', price: 380, originalPrice: 499, discount: '24% off' },
-      { size: '60 Gummies (Pack of 2)', price: 740, originalPrice: 998, discount: '26% off' }
+      { size: '30 Gummies (1 Bottle)', price: 424, originalPrice: 499, discount: '15% off' },
+      { size: '60 Gummies (Pack of 2)', price: 829, originalPrice: 998, discount: '17% off' }
     ],
     highlights: [
       '150mg Premium Ashwagandha Extract per chewable gummy',
@@ -201,9 +201,9 @@ export const STATIC_PRODUCTS = [
     category: 'deep_recovery',
     section: 'best_sellers',
     size: '30 Gummies',
-    price: 400,
+    price: 424,
     originalPrice: 499,
-    discountPercent: 20,
+    discountPercent: 15,
     rating: 4.9,
     reviewCount: '980',
     ratingsCount: '2,860',
@@ -213,7 +213,7 @@ export const STATIC_PRODUCTS = [
       '/images/products/Multivitamin gummy.jpeg',
       '/images/products/multivitamin gummy back.jpeg'
     ],
-    badge: '20% OFF',
+    badge: '15% OFF',
     inStock: true,
     assured: true,
     companionId: 'prod_1',
@@ -221,8 +221,8 @@ export const STATIC_PRODUCTS = [
     comboSavingsPercent: 20,
     description: 'Comprehensive daily health supplement packed with essential Vitamins (A, B-Complex, C, D2) and vital Minerals (Iron, Magnesium, Zinc, Selenium). Boosts immune defense, vision health, and all-day vitality.',
     availableSizes: [
-      { size: '30 Gummies (1 Bottle)', price: 400, originalPrice: 499, discount: '20% off' },
-      { size: '60 Gummies (Pack of 2)', price: 780, originalPrice: 998, discount: '22% off' }
+      { size: '30 Gummies (1 Bottle)', price: 424, originalPrice: 499, discount: '15% off' },
+      { size: '60 Gummies (Pack of 2)', price: 829, originalPrice: 998, discount: '17% off' }
     ],
     highlights: [
       'Complete spectrum of essential multivitamins & trace minerals',

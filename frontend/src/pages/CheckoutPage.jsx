@@ -112,19 +112,30 @@ export const CheckoutPage = () => {
   );
   const productDiscount = totalMRP - itemsSubtotal;
 
-  // Coupon discount removed
-  const couponDiscount = 0;
+  // Influencer coupon discount: 5% off
+  const couponDiscount = appliedCoupon ? Math.round(itemsSubtotal * 0.05) : 0;
 
   // Extra 5% instant UPI prepaid discount
   const prepaidDiscount = paymentMethod === 'upi' ? Math.round(itemsSubtotal * 0.05) : 0;
 
-  const finalPayable = Math.max(0, itemsSubtotal - prepaidDiscount);
-  const totalSavings = productDiscount + prepaidDiscount;
+  const finalPayable = Math.max(0, itemsSubtotal - couponDiscount - prepaidDiscount);
+  const totalSavings = productDiscount + couponDiscount + prepaidDiscount;
 
   const handleApplyCoupon = (e) => {
     e.preventDefault();
-    showToast('No coupons active at this time');
+    const clean = couponInput.trim().toUpperCase();
+    if (['INFLUENCER5', 'INFLUENCER', 'CREATOR5', 'ZEN5', 'SPECIAL5'].includes(clean)) {
+      setAppliedCoupon('INFLUENCER5');
+      showToast('🎉 Influencer Coupon Applied: Extra 5% OFF!');
+    } else if (clean) {
+      showToast('Invalid coupon code. Try INFLUENCER5');
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon('');
     setCouponInput('');
+    showToast('Coupon removed');
   };
 
   const handlePlaceOrder = () => {
@@ -392,6 +403,46 @@ export const CheckoutPage = () => {
         </section>
 
         {/* 4. Flipkart Coupon Strip */}
+        <section className="fk-checkout-card fk-coupon-card">
+          <div className="fk-coupon-header">
+            <Tag size={18} color="#85532F" />
+            <div className="fk-coupon-text-block">
+              <strong>Have an Influencer Coupon Code?</strong>
+              {appliedCoupon ? (
+                <span className="fk-applied-coupon-text">
+                  🎉 {appliedCoupon} applied (5% OFF)
+                </span>
+              ) : (
+                <span>Use code INFLUENCER5 for extra 5% off your order</span>
+              )}
+            </div>
+            {appliedCoupon && (
+              <button
+                type="button"
+                className="fk-coupon-remove-btn"
+                onClick={handleRemoveCoupon}
+              >
+                Remove
+              </button>
+            )}
+          </div>
+
+          {!appliedCoupon && (
+            <form className="fk-coupon-form" onSubmit={handleApplyCoupon}>
+              <input
+                type="text"
+                className="fk-coupon-input"
+                placeholder="Enter Coupon (e.g. INFLUENCER5)"
+                value={couponInput}
+                onChange={(e) => setCouponInput(e.target.value)}
+              />
+              <button type="submit" className="fk-coupon-apply-btn">
+                APPLY
+              </button>
+            </form>
+          )}
+        </section>
+
         {/* 5. Payment Options Selector (Flipkart Exact) */}
         <section className="fk-checkout-card fk-payment-card">
           <div className="fk-card-header-simple">
@@ -519,6 +570,13 @@ export const CheckoutPage = () => {
               <span>Discount</span>
               <span className="fk-green-text">-₹{productDiscount}</span>
             </div>
+
+            {couponDiscount > 0 && (
+              <div className="fk-price-line">
+                <span>Influencer Coupon ({appliedCoupon})</span>
+                <span className="fk-green-text">-₹{couponDiscount}</span>
+              </div>
+            )}
 
             {prepaidDiscount > 0 && (
               <div className="fk-price-line">

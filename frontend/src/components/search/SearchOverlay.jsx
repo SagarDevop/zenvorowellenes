@@ -30,7 +30,7 @@ const RITUAL_CARDS = [
     category: 'inner_power',
     name: 'Shilajit Gummies',
     subtitle: 'Strength, Stamina & Vitality',
-    discount: 'DIWALI OFFER — 33% OFF',
+    discount: '20% OFF',
     icon: Flame,
     color: '#85532F'
   },
@@ -39,7 +39,7 @@ const RITUAL_CARDS = [
     category: 'brain_focus',
     name: 'Ashwagandha Gummies',
     subtitle: 'Stress Relief & Energy',
-    discount: '24% OFF',
+    discount: '15% OFF',
     icon: Brain,
     color: '#2563EB'
   },
@@ -48,7 +48,7 @@ const RITUAL_CARDS = [
     category: 'deep_recovery',
     name: 'Multivitamin Gummies',
     subtitle: 'Complete Daily Nutrition',
-    discount: '20% OFF',
+    discount: '15% OFF',
     icon: Moon,
     color: '#7C3AED'
   }

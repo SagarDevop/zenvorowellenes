@@ -43,13 +43,13 @@ export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
     name: 'ZENVORO Ashwagandha Gummies (Stress Relief & Vitality)',
     shortName: 'ZENVORO Ashwagandha Gummies',
     category: 'brain_focus',
-    price: 380,
+    price: 424,
     originalPrice: 499,
-    discountPercent: 24,
+    discountPercent: 15,
     rating: 4.8,
     reviewCount: '1.2k',
     image: '/images/products/Aswgantha gummy.jpeg',
-    badge: '24% OFF',
+    badge: '15% OFF',
     size: '30 Gummies'
   };
 
@@ -61,7 +61,7 @@ export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
     }
   };
 
-  const savingsAmount = ashwaProduct.originalPrice ? ashwaProduct.originalPrice - ashwaProduct.price : 119;
+  const savingsAmount = ashwaProduct.originalPrice ? ashwaProduct.originalPrice - ashwaProduct.price : 75;
 
   return (
     <section className="deals-for-you-section" aria-label="Deal for You">
@@ -130,7 +130,7 @@ export const DealsForYou = ({ products = [], onSelectProduct, onViewAll }) => {
           />
 
           <span className="deal-spotlight-badge">
-            FLAT {ashwaProduct.discountPercent || 24}% OFF
+            FLAT {ashwaProduct.discountPercent || 15}% OFF
           </span>
 
           <div className="deal-rating-pill">

@@ -48,7 +48,7 @@ export const DiwaliBanner = ({ onSelectProduct }) => {
         {/* Subtle Floating Festive Pill */}
         <div className="diwali-festive-badge">
           <span className="diwali-diya-icon">🪔</span>
-          <span>DIWALI OFFER — 33% OFF</span>
+          <span>DIWALI OFFER — 20% OFF</span>
         </div>
 
         {/* Action Button Indicator */}

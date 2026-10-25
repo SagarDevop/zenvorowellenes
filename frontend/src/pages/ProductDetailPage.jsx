@@ -394,7 +394,7 @@ export const ProductDetailPage = ({
           {/* Price Breakdown */}
           <div className="pdp-price-block">
             <div className="pdp-special-tag">
-              {product.id === 'prod_1' ? 'DIWALI OFFER — 33% OFF' : product.id === 'prod_2' ? '24% OFF' : product.id === 'prod_3' ? '20% OFF' : 'Special Price'}
+              {product.id === 'prod_1' ? '20% OFF' : product.id === 'prod_2' ? '15% OFF' : product.id === 'prod_3' ? '15% OFF' : 'Special Price'}
             </div>
             <div className="pdp-price-numbers-row">
               <span className="pdp-price-current">₹{currentPrice}</span>
@@ -423,7 +423,7 @@ export const ProductDetailPage = ({
                 <Tag size={15} color="#85532F" />
               </div>
               <div className="pdp-offer-text">
-                <strong>Diwali Special:</strong> Single Bottle at <strong>₹400</strong> (DIWALI OFFER — 33% OFF)
+                <strong>Special Offer:</strong> Single Bottle at <strong>₹{product.price}</strong> (20% OFF)
               </div>
             </div>
           )}
@@ -434,7 +434,7 @@ export const ProductDetailPage = ({
                 <Tag size={15} color="#85532F" />
               </div>
               <div className="pdp-offer-text">
-                <strong>Special Offer:</strong> Single Bottle at <strong>₹380</strong> (24% OFF)
+                <strong>Special Offer:</strong> Single Bottle at <strong>₹{product.price}</strong> (15% OFF)
               </div>
             </div>
           )}
@@ -445,12 +445,19 @@ export const ProductDetailPage = ({
                 <Tag size={15} color="#85532F" />
               </div>
               <div className="pdp-offer-text">
-                <strong>Special Offer:</strong> Single Bottle at <strong>₹400</strong> (20% OFF)
+                <strong>Special Offer:</strong> Single Bottle at <strong>₹{product.price}</strong> (15% OFF)
               </div>
             </div>
           )}
 
-         
+          <div className="pdp-offer-item highlight">
+            <div className="pdp-offer-bullet">
+              <Tag size={15} color="#85532F" />
+            </div>
+            <div className="pdp-offer-text">
+              <strong>Influencer Offer:</strong> Use coupon code <span className="pdp-coupon-code-pill">INFLUENCER5</span> for an extra 5% OFF at checkout!
+            </div>
+          </div>
 
           <div className="pdp-offer-item">
             <div className="pdp-offer-bullet">

@@ -53,6 +53,8 @@ export const CustomerDetailsPage = () => {
   const buyNowId = searchParams.get('buyNow');
   const [buyNowItem, setBuyNowItem] = useState(location.state?.buyNowItem || null);
   const [loading, setLoading] = useState(Boolean(buyNowId && !location.state?.buyNowItem));
+  const [couponCode, setCouponCode] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState('');
 
   // Customer Form State with LocalStorage persistence
   const [formData, setFormData] = useState(() => {
@@ -167,13 +169,31 @@ export const CustomerDetailsPage = () => {
     return [];
   }, [buyNowItem, cartData]);
 
-  // Price Calculations (Zero Coupon Logic)
+  // Price Calculations (Influencer Coupon Support)
   const subtotal = activeItems.reduce((acc, item) => acc + item.subtotal, 0);
   const totalMRP = activeItems.reduce((acc, item) => acc + item.itemMRP, 0);
   const productDiscounts = Math.max(0, totalMRP - subtotal);
   const deliveryCharges = 0; // Free Express Delivery
-  const finalTotal = subtotal;
-  const totalSavings = productDiscounts;
+  const couponDiscount = appliedCoupon ? Math.round(subtotal * 0.05) : 0;
+  const finalTotal = Math.max(0, subtotal - couponDiscount);
+  const totalSavings = productDiscounts + couponDiscount;
+
+  const handleApplyCoupon = (e) => {
+    e?.preventDefault();
+    const cleanCode = couponCode.trim().toUpperCase();
+    if (['INFLUENCER5', 'INFLUENCER', 'CREATOR5', 'ZEN5', 'SPECIAL5'].includes(cleanCode)) {
+      setAppliedCoupon('INFLUENCER5');
+      showToast('🎉 Influencer Coupon Applied: Extra 5% OFF!');
+    } else if (cleanCode) {
+      showToast('Invalid coupon code. Try INFLUENCER5');
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon('');
+    setCouponCode('');
+    showToast('Coupon removed');
+  };
 
   // Form Validation
   const validateForm = () => {
@@ -247,6 +267,9 @@ export const CustomerDetailsPage = () => {
     msg += `\n\nPRICE SUMMARY\n`;
     msg += `Subtotal: ₹${subtotal}\n`;
     msg += `Product Discounts: ₹${productDiscounts}\n`;
+    if (couponDiscount > 0) {
+      msg += `Coupon (${appliedCoupon} - 5% OFF): -₹${couponDiscount}\n`;
+    }
     msg += `Delivery Charges: ${deliveryCharges === 0 ? 'FREE' : '₹' + deliveryCharges}\n`;
     msg += `Final Order Total: ₹${finalTotal}\n\n`;
 
@@ -598,6 +621,34 @@ export const CustomerDetailsPage = () => {
               ))}
             </div>
 
+            {/* Influencer Coupon Box */}
+            <div className="cd-coupon-box">
+              {appliedCoupon ? (
+                <div className="cd-coupon-applied-row">
+                  <span className="cd-coupon-code-chip">
+                    <Tag size={12} />
+                    {appliedCoupon} (5% OFF)
+                  </span>
+                  <button type="button" className="cd-coupon-remove" onClick={handleRemoveCoupon}>
+                    Remove
+                  </button>
+                </div>
+              ) : (
+                <form className="cd-coupon-form" onSubmit={handleApplyCoupon}>
+                  <input
+                    type="text"
+                    className="cd-coupon-input"
+                    placeholder="Enter Coupon (e.g. INFLUENCER5)"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value)}
+                  />
+                  <button type="submit" className="cd-coupon-btn">
+                    Apply
+                  </button>
+                </form>
+              )}
+            </div>
+
             {/* Price Details Breakdown */}
             <div className="cd-price-lines">
               <div className="cd-price-line">
@@ -609,6 +660,13 @@ export const CustomerDetailsPage = () => {
                 <div className="cd-price-line discount">
                   <span>Product Discount</span>
                   <span>-₹{productDiscounts}</span>
+                </div>
+              )}
+
+              {couponDiscount > 0 && (
+                <div className="cd-price-line discount">
+                  <span>Influencer Coupon ({appliedCoupon})</span>
+                  <span>-₹{couponDiscount}</span>
                 </div>
               )}
 
