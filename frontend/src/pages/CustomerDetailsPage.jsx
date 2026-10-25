@@ -181,11 +181,11 @@ export const CustomerDetailsPage = () => {
   const handleApplyCoupon = (e) => {
     e?.preventDefault();
     const cleanCode = couponCode.trim().toUpperCase();
-    if (['INFLUENCER5', 'INFLUENCER', 'CREATOR5', 'ZEN5', 'SPECIAL5'].includes(cleanCode)) {
-      setAppliedCoupon('INFLUENCER5');
-      showToast('🎉 Influencer Coupon Applied: Extra 5% OFF!');
+    if (['GAURAV5', 'GAURAV', 'INFLUENCER5', 'INFLUENCER', 'CREATOR5', 'ZEN5', 'SPECIAL5'].includes(cleanCode)) {
+      setAppliedCoupon('Gaurav5');
+      showToast('🎉 Coupon Gaurav5 Applied: Extra 5% OFF!');
     } else if (cleanCode) {
-      showToast('Invalid coupon code. Try INFLUENCER5');
+      showToast('Invalid coupon code. Try Gaurav5');
     }
   };
 
@@ -638,7 +638,7 @@ export const CustomerDetailsPage = () => {
                   <input
                     type="text"
                     className="cd-coupon-input"
-                    placeholder="Enter Coupon (e.g. INFLUENCER5)"
+                    placeholder="Enter Coupon (e.g. Gaurav5)"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
                   />
@@ -665,7 +665,7 @@ export const CustomerDetailsPage = () => {
 
               {couponDiscount > 0 && (
                 <div className="cd-price-line discount">
-                  <span>Influencer Coupon ({appliedCoupon})</span>
+                  <span>Coupon Discount ({appliedCoupon})</span>
                   <span>-₹{couponDiscount}</span>
                 </div>
               )}

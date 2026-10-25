@@ -124,11 +124,11 @@ export const CheckoutPage = () => {
   const handleApplyCoupon = (e) => {
     e.preventDefault();
     const clean = couponInput.trim().toUpperCase();
-    if (['INFLUENCER5', 'INFLUENCER', 'CREATOR5', 'ZEN5', 'SPECIAL5'].includes(clean)) {
-      setAppliedCoupon('INFLUENCER5');
-      showToast('🎉 Influencer Coupon Applied: Extra 5% OFF!');
+    if (['GAURAV5', 'GAURAV', 'INFLUENCER5', 'INFLUENCER', 'CREATOR5', 'ZEN5', 'SPECIAL5'].includes(clean)) {
+      setAppliedCoupon('Gaurav5');
+      showToast('🎉 Coupon Gaurav5 Applied: Extra 5% OFF!');
     } else if (clean) {
-      showToast('Invalid coupon code. Try INFLUENCER5');
+      showToast('Invalid coupon code. Try Gaurav5');
     }
   };
 
@@ -407,13 +407,13 @@ export const CheckoutPage = () => {
           <div className="fk-coupon-header">
             <Tag size={18} color="#85532F" />
             <div className="fk-coupon-text-block">
-              <strong>Have an Influencer Coupon Code?</strong>
+              <strong>Have a Coupon Code?</strong>
               {appliedCoupon ? (
                 <span className="fk-applied-coupon-text">
                   🎉 {appliedCoupon} applied (5% OFF)
                 </span>
               ) : (
-                <span>Use code INFLUENCER5 for extra 5% off your order</span>
+                <span>Use code Gaurav5 for extra 5% off your order</span>
               )}
             </div>
             {appliedCoupon && (
@@ -432,7 +432,7 @@ export const CheckoutPage = () => {
               <input
                 type="text"
                 className="fk-coupon-input"
-                placeholder="Enter Coupon (e.g. INFLUENCER5)"
+                placeholder="Enter Coupon (e.g. Gaurav5)"
                 value={couponInput}
                 onChange={(e) => setCouponInput(e.target.value)}
               />
@@ -573,7 +573,7 @@ export const CheckoutPage = () => {
 
             {couponDiscount > 0 && (
               <div className="fk-price-line">
-                <span>Influencer Coupon ({appliedCoupon})</span>
+                <span>Coupon Discount ({appliedCoupon})</span>
                 <span className="fk-green-text">-₹{couponDiscount}</span>
               </div>
             )}

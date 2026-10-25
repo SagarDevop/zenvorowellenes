@@ -10,8 +10,8 @@ export const STATIC_CATEGORIES = [
 
 export const STATIC_BANNERS = {
   announcement: {
-    text: 'Diwali Festive Special: Extra 5% OFF with code INFLUENCER5 • Free Express Shipping across India',
-    code: 'INFLUENCER5',
+    text: 'Diwali Festive Special: Extra 5% OFF with code Gaurav5 • Free Express Shipping across India',
+    code: 'Gaurav5',
     discount: '5% OFF'
   },
   heroSlides: [
