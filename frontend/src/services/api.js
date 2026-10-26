@@ -53,8 +53,8 @@ export const STATIC_PRODUCTS = [
     category: 'inner_power',
     section: 'best_sellers',
     size: '30 Gummies',
-    price: 399,
-    originalPrice: 499,
+    price: 480,
+    originalPrice: 599,
     discountPercent: 20,
     rating: 4.9,
     reviewCount: '1,840',
@@ -69,7 +69,7 @@ export const STATIC_PRODUCTS = [
     inStock: true,
     assured: true,
     companionId: 'prod_2',
-    comboDiscount: 399,
+    comboDiscount: 480,
     comboSavingsPercent: 25,
     description: 'Made with pure Himalayan Shilajit for peak performance. Enriched with 250mg purified Shilajit resin per chewable gummy in delicious tamarind flavour. Boosts overall well-being, male health, and stamina.',
     marketplaceLinks: {
@@ -78,9 +78,9 @@ export const STATIC_PRODUCTS = [
       meesho: 'https://www.meesho.com/search?q=Zenvoro+Gummies'
     },
     availableSizes: [
-      { size: '30 Gummies (1 Bottle)', price: 399, originalPrice: 499, discount: '20% off' },
-      { size: '60 Gummies (Pack of 2)', price: 779, originalPrice: 998, discount: '22% off' },
-      { size: '90 Gummies (Pack of 3)', price: 1149, originalPrice: 1497, discount: '23% off' }
+      { size: '30 Gummies (1 Bottle)', price: 480, originalPrice: 599, discount: '20% off' },
+      { size: '60 Gummies (Pack of 2)', price: 939, originalPrice: 1198, discount: '22% off' },
+      { size: '90 Gummies (Pack of 3)', price: 1379, originalPrice: 1797, discount: '23% off' }
     ],
     highlights: [
       '250mg Purified Himalayan Shilajit Resin per chewable gummy',
