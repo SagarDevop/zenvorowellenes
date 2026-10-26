@@ -450,14 +450,7 @@ export const ProductDetailPage = ({
             </div>
           )}
 
-          <div className="pdp-offer-item highlight">
-            <div className="pdp-offer-bullet">
-              <Tag size={15} color="#85532F" />
-            </div>
-            <div className="pdp-offer-text">
-              <strong>Special Coupon:</strong> Use code <span className="pdp-coupon-code-pill">Gaurav5</span> for an extra 5% OFF at checkout!
-            </div>
-          </div>
+          
 
           <div className="pdp-offer-item">
             <div className="pdp-offer-bullet">
