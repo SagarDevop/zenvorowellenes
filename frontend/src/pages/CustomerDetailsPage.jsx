@@ -638,7 +638,7 @@ export const CustomerDetailsPage = () => {
                   <input
                     type="text"
                     className="cd-coupon-input"
-                    placeholder="Enter Coupon (e.g. Gaurav5)"
+                    placeholder="Enter Coupon"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
                   />
